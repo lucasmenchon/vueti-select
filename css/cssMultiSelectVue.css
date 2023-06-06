@@ -1,48 +1,29 @@
-#VueMultiSelect {
-  position: relative;
-}
-
-.dropdown-toggle {
-  width: 100%;
-  text-align: left;
-  border-radius: 0.375rem;
-  cursor: pointer;
-}
-
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 0.375rem;
-  background-color: #fff;
-  padding: 4px;
-}
-
-.dropdown-menu li {
-  padding: 6px 12px;
-}
-
-.search-bar {
+.group-header {
   display: flex;
   align-items: center;
 }
 
-.input-group {
-  width: 100%;
+.group-header .select-all-checkbox {
+  margin-right: 5px;
 }
 
-.input-group-append {
-  display: flex;
+.group-header .group-toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.input-group-append .clear-button {
-  border-radius: 0 0.375rem 0.375rem 0;
-  padding: 0.375rem 0.75rem;
+.group-toggle-button i {
+  margin-left: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
 }
 
 .checkbox-label {
@@ -50,18 +31,12 @@
   align-items: center;
 }
 
-.checkbox-label .input{
-  cursor: pointer;
+.search-bar {
+  padding: 5px;
 }
 
-.checkbox-label input[type="checkbox"] {
-  margin-right: 6px;
+.clear-button {
   cursor: pointer;
-  width: 18px;
-  height: 18px;
-}
-
-.clear-button i {
-  font-size: 12px; /* Ajuste o tamanho do ícone */
-  vertical-align: middle;
+  background: none;
+  border: none;
 }
