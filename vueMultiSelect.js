@@ -1,7 +1,7 @@
 var VueMultiSelect = Vue.component('VueMultiSelect', {
   template: `
   <div id="VueMultiSelect" class="dropdown">
-    <button class="btn btn-default dropdown-toggle form-control" type="button" @click="toggleDropdown">
+    <button class="btn-open-multiselect" type="button" @click="toggleDropdown">
       {{ selectedOptions.length === 0 ? 'Nenhuma opção selecionada' : selectedOptions.join(', ') }}
       <span class="caret"></span>
     </button>
