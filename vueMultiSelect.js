@@ -108,8 +108,7 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
     toggleGroup(group) {
       group.expanded = !group.expanded;
     },
-    handleOutsideClick(event) {
-      // Close dropdown if clicked outside the component
+    handleOutsideClick(event) {      
       if (this.showDropdown && !this.$el.contains(event.target)) {
         this.cssBtnBox.btn = 'btn-close-multiselect';
         this.cssBtnBox.icon = 'close';
@@ -120,8 +119,7 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
       }
     }
   },
-  beforeDestroy() {
-    // Remove the event listener when the component is destroyed
+  beforeDestroy() {    
     document.removeEventListener('click', this.handleOutsideClick);
   }
 
