@@ -1,5 +1,9 @@
-.btn-close-multiselect,
-.btn-open-multiselect {
+.vuetiSelectBox {
+  width: 100%;
+}
+
+.close-btnVueti,
+.open-btnVueti {
   display: block;
   padding: 7px 12px;
   width: 100%;
@@ -11,74 +15,85 @@
   cursor: pointer;
   user-select: none;
   border: 1px solid #cccccc;
-  transition: transform 0.2s ease, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #f0f0f0;
 }
 
-.btn-close-multiselect {
-  background-image: linear-gradient(to bottom, #e5e5e5, #eeeeee); 
+.close-btnVueti:hover,
+.open-btnVueti:hover {
+  background-color: #eaeaea;
 }
 
-.btn-open-multiselect {
-  background-image: linear-gradient(to bottom, #d5d5d5, #eeeeee);
+.open-btnVueti {
+  background-color: #eaeaea;
 }
 
-.btn-close-multiselect:hover,
-.btn-open-multiselect:hover {
-  background-image: linear-gradient(to bottom, #d5d5d5, #eeeeee);
-}
-
-.caret-icon.open {
+.arrowIcon.open {
   transform: rotate(90deg);
   transition: transform 0.2s ease;
 }
 
-.caret-icon.close {
+.arrowIcon.close {
   transform: rotate(0deg);
   transition: transform 0.2s ease;
 }
 
-ul {  
+.ulMenu {
   list-style-type: none;
   padding-left: 0;
-  margin: 0;  
+  margin: 0;
   transition: max-height 1.5s ease;
   position: relative;
 }
 
-.clear-button{
-  padding: 7px 12px;  
+.clearButton {
+  background-color: #eaeaea;
+  padding: 7px 12px;
   border: 1px solid #cccccc;
+  border-top: none;
   border-left: none;
   cursor: pointer;
 }
 
-.search-icon{
-  padding: 7px 12px;  
+.searchIcon {
+  background-color: #eaeaea;
+  padding: 7px 12px;
   border: 1px solid #cccccc;
   border-right: none;
+  border-top: none;
 }
 
-.search-box {  
+.searchBox {
   display: flex;
-  background-color: #ffffff; 
-  border-radius: 1px; 
-  position: sticky; 
-  top: 0; 
+  background-color: #ffffff;
+  border-radius: 1px;
+  position: sticky;
+  top: 0;
   z-index: 1;
 }
 
-.search-bar {
+.searchBar {
   width: 100%;
   border: 1px solid #cccccc;
-  padding: 7px 12px;
+  border-top: none;
+  padding: 6px 8px;
   box-shadow: none;
-  outline: none;  
+  outline: none;
 }
 
-.dropdown-box{
+.dropdownBox {
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 200px;
   position: relative;
   border: 1px solid #cccccc;
-  border-top: none;  
+  border-top: none;
+}
+
+.dropdownMenu{
+  height: 0px;
+  transition: height 2s;
+}
+
+.dropdownMenu:hover{
+  height: 300px;
 }

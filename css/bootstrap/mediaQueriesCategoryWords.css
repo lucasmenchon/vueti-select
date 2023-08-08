@@ -1,0 +1,106 @@
+﻿@media screen and (max-width: 989px) {
+    .label-fields-config-calls {
+        height: 18px;
+    }
+    .fields-small{
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .col-config-time .mask-times {
+        padding-left:5px;
+        padding-right:5px;
+    }
+    .col-config-time .col-md-6 {
+        padding-left:1px;
+    }
+
+    .label-fields-config-calls {
+        height: 54px;
+    }
+    .label-fields-config-words {
+        height: 65px;
+    }
+    .container-fields-config-category{
+        font-size: 12px;
+        width: 30%;
+    }
+    .fields-config-words{
+        padding: 0px;
+    }
+    .resizeFieldrow{
+        margin-left: 0px;
+    }
+    #optPeriod{
+        width: 10px;
+    }
+    #optRealTime{
+        width: 10px;
+    }
+    #containerFieldPeriod{
+        font-size: 12px;
+        width: 40%;
+    }
+    #selectedDir{
+        font-size: 12px; 
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .label-fields-config-calls { 
+        height: 36px;
+    }
+    .label-fields-config-words {
+        height: 28px;
+    }
+    .fieldDropDownRules{
+        width: 80%; 
+    }
+    #containerFieldPeriod{
+        font-size: 13px;
+    }
+    #selectedDir{
+        font-size: 13px; 
+    }
+    .container-fields-config-category{
+        font-size: 13px;
+    }
+    .col-list-count-info{
+        font-size: 13px;
+    }
+    .resizeFieldrow row{
+        margin-left: 0px; 
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    .label-fields-config-calls {
+        height: 36px;
+    } 
+    .label-fields-config-words {
+        height: 28px;
+    }
+    .container-fields-config-category{
+        font-size: 13px;
+    }
+    .col-list-count-info{
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .fieldDropDownRules{
+        width: 80%; 
+    }
+    #containerFieldPeriod{
+        font-size: 13px;
+    }
+    #selectedDir{
+        font-size: 13px; 
+    }
+    #containerFieldPeriod{
+        font-size: 13px;
+    }
+    #selectedDir{
+        font-size: 13px; 
+    }
+}

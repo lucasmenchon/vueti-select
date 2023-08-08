@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/MultiVueselect.css">
+  <link rel="stylesheet" href="css/MultiVueselect.css" />
+  <link rel="stylesheet" href="css/font/all.css" />
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
   <title>VueMultiSelect Development</title>
 </head>
-<body>
-  <div id="app">
-    <vue-multi-select></vue-multi-select>   
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  <script src="vueMultiSelect.js"></script>
-  <script>
-    var app = new Vue({
-      el: "#app",
-      components: {
-        'vue-multi-select': VueMultiSelect
-      },
-      data: {},
-      computed: {},
-      watch: {},
-      methods: {}
-    });
-  </script>
+<body>
+
+  <style> 
+    .teste {
+      width: 100px;
+      height: 100px;
+      background: red;
+      transition: width 0.5s;
+    }
+    
+    .teste:hover {
+      width: 300px;
+    }
+    </style> 
+  
+
+  <div id="app">
+
+          
+      
+      <h1>The transition Property</h1>
+      
+      <p>Hover over the div element below, to see the transition effect:</p>
+      <div class="teste">teste</div>
+
+    <div class="row" style="margin-top: 200px;">
+      <div class="col-md-3">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="col-md-3">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="col-md-3">
+        <label for="exampleInputPassword1">opcao</label>
+        <vue-multi-select></vue-multi-select>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="css/bootstrap/"></script>
+    <script src="vueMultiSelect.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        components: {
+          'vue-multi-select': VueMultiSelect
+        },
+        data: {},
+        computed: {},
+        watch: {},
+        methods: {}
+      });
+    </script>
 </body>
 
 </html>

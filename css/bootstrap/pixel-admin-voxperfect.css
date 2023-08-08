@@ -1,0 +1,314 @@
+﻿/* Largura do logo VoxPerfect */
+#main-navbar .navbar-brand div, #main-navbar .navbar-brand div img { width:auto; }
+
+/* Ajuste no menu lateral para iniciar imediatamente após a barra superior */
+#main-menu .menu-content.top { padding-top: 25px; }
+
+/* Cor de fundo e cor das fontes do botão de "toggle" do menu vertical */
+.theme-default #main-navbar #main-menu-toggle { background-color: #0B88DA; }
+    .theme-default #main-navbar #main-menu-toggle .navbar-icon { color:#fff; }
+    .theme-default #main-navbar #main-menu-toggle .fa:before { color:#fff; }
+
+    
+.theme-default #main-navbar .navbar-header { background-color: #0B88DA; }
+.theme-default.main-menu-right #main-navbar .navbar-header, 
+    .theme-default.mmc #main-navbar .navbar-header { background-color: #fff; }
+
+.theme-default .page-header {  background-color:#fff; }
+.theme-default .breadcrumb-page { background-color:#fff; }
+
+.theme-default #main-navbar .navbar-brand div { background:none; }
+
+.theme-default #main-menu-bg { background-color: #2a2d33; } /*#293E7A*/
+
+.theme-default #main-menu .mmc-dropdown-open-ul a, .theme-default #main-menu .navigation a { color:#fff; }
+
+@media (min-width: 768px) {
+    #main-menu ul.navigation > li {
+        width: 241px;
+    }
+}
+
+/* MasterPage */
+.notifications-list a { line-height:normal !important; } 
+
+img.logoClient { max-height:37px;  }
+
+.top-loading-container { position:fixed; top:0px;  left:0px; width:100%; text-align:center; height:10px; }
+    .top-loading-container img { position:fixed; }
+
+.checkbox, .radio {
+    margin-bottom: 0;
+}
+
+.checkbox label, .radio label {
+    font-weight:600;
+}
+
+/* Repeater with list-group with checkbox on list-group-item (Start) */
+.list-item-server, 
+.list-item-grouper { background-color:#dcdcdc; color:#000; }
+.list-item-user { padding-left:35px;  }
+.list-item-user .gt-ie8 input.px + .lbl:before { top:-15px; }
+/* Repeater with list-group with checkbox on list-group-item (End  ) */
+
+/*Login Page*/
+#page-signin-bg { z-index: -10; }
+
+/*Grid Pages*/
+.recordsFoundContainer { margin-bottom:15px; }
+
+.input-group-addon span.checkbox label.lbl { padding-top:3px; }
+
+/* Checkboxlist Exchange (From one to another) */
+.checkboxlist-exchange { width:100%; margin-bottom:20px; }
+    .checkboxlist-exchange .col-list-count-info { margin-bottom:5px; }
+    .checkboxlist-exchange .col-list-controls { margin-bottom:10px; padding-top:23px; }
+    .checkboxlist-exchange .checkboxlist-container { width:100%; border:1px solid #ccc; overflow:scroll; overflow-x:hidden; height:130px; margin-bottom:10px; }
+        .checkboxlist-exchange .checkboxlist-container .checkboxlist { margin:5px; width:100%; }
+            .checkboxlist-exchange .checkboxlist-container .checkboxlist td.checkbox label.lbl { width:100%; }
+                .checkboxlist-exchange .checkboxlist-container .checkboxlist td.checkbox:hover { background:#f9f9f9; }
+
+/*Formatação do asp:CheckboxList*/
+td.checkbox-td { }
+    td.checkbox-td label { font-weight:normal; }
+    td.checkbox-td input[type='checkbox'] { margin-right:3px; }
+    
+
+ .table-borderless td {
+        border-top:none !important;    
+ }
+
+.form-group-no-label-top {
+    padding-top: 23.4px;
+}
+
+@media (max-width: 768px) {
+    .checkboxlist-exchange .col-list-controls { padding-top:0px; }
+}
+
+/* Conteúdo explicativo no topo das páginas Ex.: wfrExtension.aspx */
+.content-page-top-info { margin-top: -19px; margin-left: -18px; margin-right: -18px; border-radius: 0px; }
+
+/* Correção da formatação padrão do Bootstrap .input-group-addon */
+@media (max-width: 768px) {
+    .input-group-addon { padding:2px 12px 0px; }
+}
+
+.checkbox-switcher { padding-left:0px; }
+span .checkbox-switcher { margin-top:4px; position:absolute; }
+span .checkbox-switcher label { margin-top: 3px; margin-left: 5px; position: absolute; }
+
+/* [BackupStorageRoutine.aspx] - [Inicio]*/
+.cssLblHasExclusionQueue { padding:3px; }
+    .cssLblHasExclusionQueue.yes { background:#03890a; color:#fff; }
+    .cssLblHasExclusionQueue.no { background:#b71f1f; color:#fff; }
+
+.cssLinkBtnCreateExclusionQueue,
+    .cssLinkBtnRemoveExclusionQueue { padding:3px; background:#b71f1f; color:#fff;}
+    .cssLinkBtnCreateExclusionQueue.hide { display:none; }
+    .cssLinkBtnCreateExclusionQueue.show { background:#03890a; color:#fff !important; }
+    .cssLinkBtnRemoveExclusionQueue.hide { display:none; }
+    .cssLinkBtnRemoveExclusionQueue.show { background: #b71f1f; color: #fff !important; font-weight: normal; }
+    .cssLinkRemoveQueue.hide { display:none; }
+    .cssLinkRemoveQueue.show { }
+
+
+/* [BackupStorageRoutine.aspx] - [Fim]*/
+
+/* [BackupStorageRoutineMonitor.aspx] - [Inicio] */
+/* Alinhamento de texto em relação aos textos */
+label .alignImgWithText { vertical-align:top; margin-top:4px; }
+
+/* [BackupStorageRoutineMonitor.aspx] - [Fim] */
+
+/* [wfrAlarm.aspx] - [Inicio] */
+/*Not Available*/
+.AlarmParamType-0 { background:#d3d3d3; color:#000; float:none; display:block; height:26px; }
+/*None*/
+.AlarmParamType-1 { background:#ffa5a5; color:#000; float:none; display:block; height:26px; }
+/*Custom*/
+.AlarmParamType-2 { background:#dcdcdc; color:#000; float:none; display:block; height:26px; }
+/*Default*/
+.AlarmParamType-3 { background:#4083a9; color:#fff; float:none; display:block; height:26px; }
+/*Alinhamento AlarmParamType*/
+.AlarmParamType-0 span,
+.AlarmParamType-1 span,
+.AlarmParamType-2 span,
+.AlarmParamType-3 span
+     { vertical-align:middle; }
+/* [wfrAlarm.aspx] - [Fim] */
+
+
+/*Utils*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.vertical-align-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* VoxModal */
+.voxModal { display:none; background:#fff;  width:600px; min-height:150px; position: absolute;  -webkit-box-shadow:4px 3px 12px 0px rgba(50, 50, 50, 0.75);  -moz-box-shadow:4px 3px 12px 0px rgba(50, 50, 50, 0.75); box-shadow:4px 3px 12px 0px rgba(50, 50, 50, 0.75); }
+    .voxModal .voxModal-Head { padding:0px; position:relative; width:100%; padding:12px 0px; border-bottom:1px solid #ccc; }
+        .voxModal .voxModal-Head .linkClose { position:absolute; top:5px; right:8px; font-size: 13px; padding: 3px;  background: #fff; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; color: #000; }
+    .voxModal .voxModal-Body { padding:8px; margin-bottom:38px; }
+        .voxModal .voxModal-Body .voxModal-Table { width:100%; }
+            .voxModal .voxModal-Body .voxModal-Table td { vertical-align:top; padding-top:5px; padding-bottom:5px; }
+            .voxModal .voxModal-Body .voxModal-Table th { background:#fff; font-weight:bold; text-align:left; padding-top:5px; padding-bottom:5px; }
+            .voxModal .voxModal-Body .voxModal-Table tr:nth-child(odd) { background-color: #f5f5f5; }
+    .voxModal .voxModal-Footer { position:absolute; bottom:0px; left:0px; width:100%; border-top:1px solid #ccc; padding:0px 0px; }
+
+/* Loading Bar - MasterPage - Início */
+
+/* Para posicionar na Master Pager principal */
+.load-bar-main-mp-container {
+    position:absolute; left:0px; width:100%;
+}
+
+/* Animação da barra */
+.load-bar {
+    position: relative;          
+    width: 100%;
+    height: 3px;
+    background-color: #0b88da;
+}
+.bar {
+    content: "";
+    display: inline;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 50%;
+    text-align: center;
+}
+.bar:nth-child(1) {
+    background-color: #f2f2f2;
+    animation: loading 3s linear infinite;
+}
+.bar:nth-child(2) {
+    background-color: #16d0ed;
+    animation: loading 3s linear 1s infinite;
+}
+.bar:nth-child(3) {
+    background-color: #0b88da;
+    animation: loading 3s linear 2s infinite;
+}
+@keyframes loading {
+    from {
+    left: 50%;
+    width: 0;
+    z-index: 100;
+    }
+    33.3333% {
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    }
+    to {
+    left: 0;
+    width: 100%;
+    }
+}
+/* Loading Bar - MasterPage - Fim */
+
+/* wfrRecordSearch.aspx - Pesquisa de Gravação */
+.search-controls { margin-bottom:15px; }
+#divPlayerContainer.panel .panel-heading { padding-top: 7px; padding-bottom: 7px; padding-left: 10px; border-bottom:none; }
+#divPlayerContainer .player-container-icon { float:left; margin-right:10px; }
+#divPlayerContainer .playing-now-container { float:left; }
+#divPlayerContainer .playing-now-header { margin-right:10px; }
+#divPlayerContainer .playing-now-info {  }
+#divPlayerContainer .panel-body-player { padding:0px; }
+#divPlayerContainer .videoContainer.highlight { /*box-shadow:0px 0px 0px 2px #0B88DA inset;*/ }
+#divPlayerContainer .videoContainer .identifier
+{
+    box-shadow:0px 0px 0px 3px #0B88DA inset;
+    -webkit-box-shadow: 0px 0px 0px 3px #0B88DA inset;
+    -moz-box-shadow: 0px 0px 0px 3px #0B88DA inset;
+}
+.min-width-100 { min-width:100px; }
+.min-width-81 { min-width:81px; }
+.min-width-312 { min-width:312px; }
+        
+        
+@media (min-width: 992px) {
+    .panel-record-search-filter { min-width:830px; }  
+}
+
+
+
+/* 
+    Ícones da Tela de Pesquisa de Gravação 
+*/
+.call-in-icon {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    color:#016fe4;
+}
+.call-out-icon {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    color: #e10000;
+}
+.call-unknown-icon {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    color:#9a9a9a;
+}
+
+/* MasterPage - mpVoxDefaut2.master - Gravação Seletiva - Início*/
+
+.selective-recording-control { display:table-row; }
+    .selective-recording-control .selective-recording-control-body { display:table-cell; vertical-align:middle; line-height:0px; }
+        
+    .selective-recording-control .channel-status-control { 
+            background-position: center center;
+            background-size: 24px;
+            background-repeat: no-repeat;
+            width: 32px;
+            height: 32px;
+    }
+        .selective-recording-control .channel-status-control.NOCOMMUNICATION {
+            background-image: url(/images/phone_logo_Vox_2_white_onhook_100x100.png);
+            background-color:#ccc;
+            background-position: center 1px;
+        }
+        .selective-recording-control .channel-status-control.ONHOOK {
+            background-image: url(/images/phone_logo_Vox_2_white_onhook_100x100.png);
+            background-color: #e66454;
+            background-position: center 1px;
+        } 
+        .selective-recording-control .channel-status-control.OFFHOOK {
+            background-image: url(/images/phone_logo_Vox_2_white_offhook_100x100.png);
+            background-color: #5ebd5e;
+        }
+                                                        
+    .selective-recording-control .recstatus.RECORDING { color:#e66454; }
+    .selective-recording-control .recstatus.NORECORDING { color:#ccc; }
+        
+    .selective-recording-control .stop-recording-button { cursor:pointer; }
+        .selective-recording-control .stop-recording-button.NORECORDING { display:none; }
+        .selective-recording-control .stop-recording-button.RECORDING { display:inline-block; }
+
+    .selective-recording-control .current-recording-duration {
+            display:table-cell; 
+            padding-left:5px; 
+            padding-right:7px;
+    }
+                                            
+/* MasterPage - mpVoxDefaut2.master - Gravação Seletiva - Fim   */
+
+ /* Linha opcional genérica para paineis para serem colocadas entre o .panel-heading e o .panel-body */
+.panel .panel-top-toolbar {
+    position: relative;
+    border-bottom: 1px solid #ececec;
+    padding: 7px;
+}
+
+/* Classe genérica para criar botões com fundo branco */
+.btn-white {
+    background-color:#fff !important;
+}

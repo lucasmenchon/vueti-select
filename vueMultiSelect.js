@@ -1,50 +1,50 @@
 var VueMultiSelect = Vue.component('VueMultiSelect', {
   template:`
-<div id="VueMultiSelect" class="dropdown">
-    <button :class="cssBtnBox.btn" type="button" @click="toggleDropdown()" @mouseenter="changeIconBtn(true)"
-        @mouseleave="changeIconBtn(false)">
-        {{ selectedOptions.length === 0 ? 'Nenhuma opção selecionada' : selectedOptions.join(', ') }}
-        <i class="fas fa-chevron-right caret-icon" :class="cssBtnBox.icon"></i>
+<div id="VueMultiSelect" class="vuetiSelectBox">
+    <button :class="cssBtnBox.customBtn" type="button" @click="toggleDropdown()" @mouseenter="changeIconBtn(true)"
+      @mouseleave="changeIconBtn(false)">
+      {{ selectedOptions.length === 0 ? 'Nenhuma opção selecionada' : selectedOptions.join(', ') }}
+      <i class="fas fa-arrow-alt-circle-right arrowIcon" :class="cssBtnBox.icon"></i>
     </button>
-    <div :class="cssDropdownBox">
-        <div class="search-box" v-show="showDropdown">           
-                <button class="search-icon" type="button" >
-                    <i class="fas fa-search"></i>
-                </button>            
-            <input type="text" v-model="searchTerm" placeholder="Pesquisar" class="search-bar" />          
-                <button class="clear-button icon-clearbutton" type="button" @click="clearSearch">
-                    <i class="fas fa-times"></i>
-                </button>           
-        </div>
-        <div class="dropdown-menu">
-            <ul v-show="showDropdown">
-                <li v-for="group in filteredOptions" :key="group.name">
-                    <div class="group-header">
-                        <label class="checkbox-label">
-                            <input type="checkbox" v-model="selectedOptions" :value="group.name"
-                                class="form-check-input select-all-checkbox" />
-                            {{ group.name }}
-                        </label>
-                        <button class="group-toggle-button" type="button" @click="toggleGroup(group)">
-                            <i class="fas" :class="group.expanded ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
-                        </button>
-                    </div>
-                    <ul v-show="group.expanded">
-                        <li v-for="object in group.objects" :key="object">
-                            <label class="checkbox-label">
-                                <input type="checkbox" v-model="selectedOptions" :value="object"
-                                    class="form-check-input" />
-                                {{ object }}
-                            </label>
-                        </li>
-                    </ul>
-                </li>
+    <div v-show="showDropdownMenu" class="dropdownMenu">
+      <div class="searchBox">
+        <button class="searchIcon" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+        <input type="text" v-model="searchTerm" placeholder="Pesquisar" class="searchBar" />
+        <button class="clearButton" type="button" @click="clearSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div :class="cssDropdownBox">
+        <ul class="ulMenu">
+          <li>Selecionar tudo</li>
+          <li v-for="group in filteredOptions" :key="group.name">
+            <div class="">
+              <label class="">
+                <input type="checkbox" v-model="selectedOptions" :value="group.name"
+                  class="form-check-input select-all-checkbox" />
+                {{ group.name }}
+              </label>
+              <button class="group-toggle-button" type="button" @click="toggleGroup(group)">
+                <i class="fas" :class="group.expanded ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
+              </button>
+            </div>
+            <ul v-show="group.expanded" class="ulMenu">
+              <li v-for="object in group.objects" :key="object">
+                <label class="">
+                  <input type="checkbox" v-model="selectedOptions" :value="object" class="" />
+                  {{ object }}
+                </label>
+              </li>
             </ul>
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
   `,
-  
+
   data() {
     return {
       groups: [
@@ -60,12 +60,17 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
         { name: 'Jogos', expanded: false, objects: ['Tabuleiro', 'Cartas', 'Videogame'] },
         { name: 'Ferramentas', expanded: false, objects: ['Martelo', 'Chave de Fenda', 'Serra'] },
         { name: 'Viagens', expanded: false, objects: ['Passagem Aérea', 'Hotel', 'Mala'] },
+        { name: 'Viagens', expanded: false, objects: ['Passagem Aérea', 'Hotel', 'Mala'] },
+        { name: 'Viagens', expanded: false, objects: ['Passagem Aérea', 'Hotel', 'Mala'] },
+        { name: 'Viagens', expanded: false, objects: ['Passagem Aérea', 'Hotel', 'Mala'] },
+        { name: 'Viagens', expanded: false, objects: ['Passagem Aérea', 'Hotel', 'Mala'] },
+        { name: 'Viagens', expanded: false, objects: ['Passagem Aérea', 'Hotel', 'Mala'] },
       ],
       selectedOptions: [],
       searchTerm: '',
-      showDropdown: false,
+      showDropdownMenu: false,
       cssBtnBox: {
-        btn: 'btn-close-multiselect',
+        customBtn: 'close-btnVueti',
         icon: 'close'
       },
       cssDropdownBox: '',
@@ -80,23 +85,23 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
           object.toLowerCase().includes(this.searchTerm.toLowerCase())
         )
       );
-    },    
+    },
   },
   methods: {
     toggleDropdown() {
-      this.showDropdown = !this.showDropdown;
-      if (this.showDropdown) {
-        this.cssBtnBox.btn = 'btn-open-multiselect';
-        this.cssDropdownBox = 'dropdown-box';
-        document.addEventListener('click', this.handleOutsideClick);        
+      this.showDropdownMenu = !this.showDropdownMenu;
+      if (this.showDropdownMenu) {
+        this.cssBtnBox.customBtn = 'open-btnVueti';
+        this.cssDropdownBox = 'dropdownBox';
+        document.addEventListener('click', this.handleOutsideClick);
       } else {
-        this.cssBtnBox.btn = 'btn-close-multiselect';
+        this.cssBtnBox.customBtn = 'close-btnVueti';
         this.cssDropdownBox = '';
         document.removeEventListener('click', this.handleOutsideClick);
       }
     },
     changeIconBtn(value) {
-      if (this.showDropdown) {
+      if (this.showDropdownMenu) {
         this.cssBtnBox.icon = 'open';
       } else {
         this.cssBtnBox.icon = value ? 'open' : 'close';
@@ -108,19 +113,18 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
     toggleGroup(group) {
       group.expanded = !group.expanded;
     },
-    handleOutsideClick(event) {      
-      if (this.showDropdown && !this.$el.contains(event.target)) {
-        this.cssBtnBox.btn = 'btn-close-multiselect';
+    handleOutsideClick(event) {
+      if (this.showDropdownMenu && !this.$el.contains(event.target)) {
+        this.cssBtnBox.customBtn = 'close-btnVueti';
         this.cssBtnBox.icon = 'close';
-        this.showDropdown = false;
+        this.showDropdownMenu = false;
         this.searchTerm = '';
         this.cssDropdownBox = '';
         document.removeEventListener('click', this.handleOutsideClick);
       }
     }
   },
-  beforeDestroy() {    
+  beforeDestroy() {
     document.removeEventListener('click', this.handleOutsideClick);
   }
-
 });
