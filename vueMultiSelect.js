@@ -1,19 +1,21 @@
 var VueMultiSelect = Vue.component('VueMultiSelect', {
   template:`
 <div id="VueMultiSelect" class="vuetiSelectBox">
-    <button :class="cssBtnBox.customBtn" type="button" @click="toggleDropdown()" @mouseenter="changeIconBtn(true)"
-      @mouseleave="changeIconBtn(false)">
-      {{ selectedOptions.length === 0 ? 'Nenhuma opção selecionada' : selectedOptions.join(', ') }}
-      <i class="fas fa-arrow-alt-circle-right arrowIcon" :class="cssBtnBox.icon"></i>
-    </button>
-    <div v-show="showDropdownMenu" class="dropdownMenu">
+    <div :class="cssBtnBox.customBtn" @click="toggleDropdown()" @mouseenter="changeIconBtn(true)"
+    @mouseleave="changeIconBtn(false)">
+    <span>
+      {{ selectedOptions.length === 0 ? 'Nenhuma opção selecionada' : selectedOptions.join(', ') }}      
+    </span>
+    <i class="svgArrow arrowIcon" :class="cssBtnBox.icon"></i>
+    </div>
+    <div v-show="showDropdownMenu" :class="cssDropdownMenu">
       <div class="searchBox">
         <button class="searchIcon" type="button">
-          <i class="fas fa-search"></i>
+          <i class="svgSearch"></i>
         </button>
         <input type="text" v-model="searchTerm" placeholder="Pesquisar" class="searchBar" />
         <button class="clearButton" type="button" @click="clearSearch">
-          <i class="fas fa-times"></i>
+          <i class="svgEraser"></i>
         </button>
       </div>
       <div :class="cssDropdownBox">
@@ -74,6 +76,7 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
         icon: 'close'
       },
       cssDropdownBox: '',
+      cssDropdownMenu: '',
       isMouseOver: false,
     }
   },
@@ -91,6 +94,7 @@ var VueMultiSelect = Vue.component('VueMultiSelect', {
     toggleDropdown() {
       this.showDropdownMenu = !this.showDropdownMenu;
       if (this.showDropdownMenu) {
+        this.cssDropdownMenu = 'dropdownMenu';
         this.cssBtnBox.customBtn = 'open-btnVueti';
         this.cssDropdownBox = 'dropdownBox';
         document.addEventListener('click', this.handleOutsideClick);

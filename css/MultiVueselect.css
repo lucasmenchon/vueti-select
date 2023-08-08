@@ -4,7 +4,9 @@
 
 .close-btnVueti,
 .open-btnVueti {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 7px 12px;
   width: 100%;
   font-size: 12px;
@@ -28,14 +30,36 @@
   background-color: #eaeaea;
 }
 
+.svgArrow {
+  width: 16px; /* Ajuste o tamanho conforme necessário */
+  height: 16px; /* Ajuste o tamanho conforme necessário */
+  background: url('icons/arrowIcon.svg') no-repeat center / contain;
+  display: inline-block; /* Torna o elemento um bloco inline para exibir o ícone */
+  transition: transform 0.2s ease; /* Define a transição para a rotação */
+}
+
 .arrowIcon.open {
   transform: rotate(90deg);
-  transition: transform 0.2s ease;
 }
 
 .arrowIcon.close {
   transform: rotate(0deg);
-  transition: transform 0.2s ease;
+}
+
+.svgEraser{
+  width: 16px; /* Ajuste o tamanho conforme necessário */
+  height: 16px; /* Ajuste o tamanho conforme necessário */  
+  display: inline-block;
+  padding: 8px;
+  background: url('icons/eraserIcon.svg') no-repeat center / contain;
+}
+
+.svgSearch{  
+  background: url('icons/searchIcon.svg') no-repeat center / contain;
+  width: 16px;
+  height: 6px;
+  display: inline-block;
+  padding: 0px;
 }
 
 .ulMenu {
@@ -48,7 +72,7 @@
 
 .clearButton {
   background-color: #eaeaea;
-  padding: 7px 12px;
+  padding: 0px 12px;
   border: 1px solid #cccccc;
   border-top: none;
   border-left: none;
@@ -57,7 +81,7 @@
 
 .searchIcon {
   background-color: #eaeaea;
-  padding: 7px 12px;
+  padding: 0px 12px;
   border: 1px solid #cccccc;
   border-right: none;
   border-top: none;
@@ -89,11 +113,18 @@
   border-top: none;
 }
 
-.dropdownMenu{
-  height: 0px;
-  transition: height 2s;
+.dropdownMenu {
+  height: 0;
+  transition: height 0.3s;
 }
 
-.dropdownMenu:hover{
+.dropdownMenu.expanded {
   height: 300px;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
