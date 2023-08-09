@@ -22,7 +22,7 @@
 }
 
 .close-btnVueti:hover {
-  background-color: #eaeaea;  
+  background-color: #eaeaea;
 }
 
 .open-btnVueti {
@@ -31,9 +31,9 @@
 
 .svgCaretDown {
   width: 16px;
-  height: 16px; 
+  height: 16px;
   background: url('icons/caretDownIcon.svg') no-repeat center / contain;
-  display: inline-block; 
+  display: inline-block;
   transition: transform 0.3s ease;
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
@@ -41,14 +41,16 @@
 .svgCaretDown:hover {
   filter: none;
 }
+
 .caretDownIcon.open:hover {
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
-.caretDownIcon.open {  
+
+.caretDownIcon.open {
   transform: rotate(180deg);
 }
 
-.caretDownIcon.close {  
+.caretDownIcon.close {
   opacity: 1;
   transform: rotate(0deg);
 }
@@ -62,21 +64,13 @@
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
-.svgSearch{  
+.svgSearch {
   background: url('icons/searchIcon.svg') no-repeat center / contain;
   width: 14px;
   height: 16px;
   display: inline-block;
   line-height: 16px;
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
-}
-
-.ulMenu {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-  transition: max-height 1.5s ease;
-  position: relative;
 }
 
 .clearButton {
@@ -121,22 +115,29 @@
   outline: none;
 }
 
-.dropdownBox {
+.ulBox {
   overflow-y: auto;
-  max-height: 200px;
+  max-height: 300px;
   position: relative;
   border: 1px solid #cccccc;
   border-top: none;
 }
 
+.ulMenu {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  position: relative;
+}
+
 .dropdownMenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
+  transition: max-height 0.2s ease-in-out;
 }
 
-.dropdownMenu.active {  
-  max-height: 300px;
+.dropdownMenu.active {
+  max-height: 350px;
 }
 
 .buttonBox {

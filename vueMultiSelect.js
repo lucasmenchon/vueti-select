@@ -22,7 +22,7 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
           <i class="svgEraser"></i>
         </button>
       </div>
-      <div :class="cssDropdownBox">
+      <div :class="cssUlBox">
         <ul class="ulMenu">
           <li>Selecionar tudo</li>
           <li v-for="group in filteredOptions" :key="group.name">
@@ -33,7 +33,7 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
                 {{ group.name }}
               </label>
               <button class="group-toggle-button" type="button" @click="toggleGroup(group)">
-                <i class="fas" :class="group.expanded ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
+                <i class="fas" :class="group.expanded ? '' : ''"></i>
               </button>
             </div>
             <ul v-show="group.expanded" class="ulMenu">
@@ -105,37 +105,7 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
           name: "Ferramentas",
           expanded: false,
           objects: ["Martelo", "Chave de Fenda", "Serra"],
-        },
-        {
-          name: "Viagens",
-          expanded: false,
-          objects: ["Passagem Aérea", "Hotel", "Mala"],
-        },
-        {
-          name: "Viagens",
-          expanded: false,
-          objects: ["Passagem Aérea", "Hotel", "Mala"],
-        },
-        {
-          name: "Viagens",
-          expanded: false,
-          objects: ["Passagem Aérea", "Hotel", "Mala"],
-        },
-        {
-          name: "Viagens",
-          expanded: false,
-          objects: ["Passagem Aérea", "Hotel", "Mala"],
-        },
-        {
-          name: "Viagens",
-          expanded: false,
-          objects: ["Passagem Aérea", "Hotel", "Mala"],
-        },
-        {
-          name: "Viagens",
-          expanded: false,
-          objects: ["Passagem Aérea", "Hotel", "Mala"],
-        },
+        },       
       ],
       selectedOptions: [],
       searchTerm: "",
@@ -144,7 +114,7 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
         customBtn: "close-btnVueti",
         icon: "close",
       },
-      cssDropdownBox: "",
+      cssUlBox: "",
       cssDropdownMenu: "dropdownMenu",
       isMouseOver: false,
     };
@@ -167,29 +137,32 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
         this.cssDropdownMenu = "dropdownMenu active";
         this.cssBtnBox.icon = "open";
         this.cssBtnBox.customBtn = "open-btnVueti";
-        this.cssDropdownBox = "dropdownBox";
+        this.cssUlBox = "ulBox";
         document.addEventListener("click", this.handleOutsideClick);
       } else {
         this.cssDropdownMenu = "dropdownMenu";
         this.cssBtnBox.icon = "close";
         this.cssBtnBox.customBtn = "close-btnVueti";
-        this.cssDropdownBox = "";
+        this.cssUlBox = "";
         document.removeEventListener("click", this.handleOutsideClick);
       }
     },
+
     clearSearch() {
       this.searchTerm = "";
     },
+
     toggleGroup(group) {
       group.expanded = !group.expanded;
     },
+
     handleOutsideClick(event) {
       if (this.showDropdownMenu && !this.$el.contains(event.target)) {
         this.cssDropdownMenu = "dropdownMenu";
         this.cssBtnBox.customBtn = "close-btnVueti";
         this.cssBtnBox.icon = "close";
         this.searchTerm = "";
-        this.cssDropdownBox = "";
+        this.cssUlBox = "";
         this.showDropdownMenu = false;
         document.removeEventListener("click", this.handleOutsideClick);
       }
