@@ -21,45 +21,54 @@
   background-color: #f0f0f0;
 }
 
-.close-btnVueti:hover,
-.open-btnVueti:hover {
-  background-color: #eaeaea;
+.close-btnVueti:hover {
+  background-color: #eaeaea;  
 }
 
 .open-btnVueti {
   background-color: #eaeaea;
 }
 
-.svgArrow {
-  width: 16px; /* Ajuste o tamanho conforme necessário */
-  height: 16px; /* Ajuste o tamanho conforme necessário */
-  background: url('icons/arrowIcon.svg') no-repeat center / contain;
-  display: inline-block; /* Torna o elemento um bloco inline para exibir o ícone */
-  transition: transform 0.2s ease; /* Define a transição para a rotação */
+.svgCaretDown {
+  width: 16px;
+  height: 16px; 
+  background: url('icons/caretDownIcon.svg') no-repeat center / contain;
+  display: inline-block; 
+  transition: transform 0.3s ease;
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
-.arrowIcon.open {
-  transform: rotate(90deg);
+.svgCaretDown:hover {
+  filter: none;
+}
+.caretDownIcon.open:hover {
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
+}
+.caretDownIcon.open {  
+  transform: rotate(180deg);
 }
 
-.arrowIcon.close {
+.caretDownIcon.close {  
+  opacity: 1;
   transform: rotate(0deg);
 }
 
-.svgEraser{
-  width: 16px; /* Ajuste o tamanho conforme necessário */
-  height: 16px; /* Ajuste o tamanho conforme necessário */  
+.svgEraser {
+  width: 16px;
+  height: 14px;
   display: inline-block;
-  padding: 8px;
   background: url('icons/eraserIcon.svg') no-repeat center / contain;
+  line-height: 16px;
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
 .svgSearch{  
   background: url('icons/searchIcon.svg') no-repeat center / contain;
-  width: 16px;
-  height: 6px;
+  width: 14px;
+  height: 16px;
   display: inline-block;
-  padding: 0px;
+  line-height: 16px;
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
 .ulMenu {
@@ -77,6 +86,9 @@
   border-top: none;
   border-left: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .searchIcon {
@@ -85,6 +97,10 @@
   border: 1px solid #cccccc;
   border-right: none;
   border-top: none;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .searchBox {
@@ -100,7 +116,7 @@
   width: 100%;
   border: 1px solid #cccccc;
   border-top: none;
-  padding: 6px 8px;
+  padding: 4px 6px;
   box-shadow: none;
   outline: none;
 }
@@ -114,17 +130,17 @@
 }
 
 .dropdownMenu {
-  height: 0;
-  transition: height 0.3s;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
 }
 
-.dropdownMenu.expanded {
-  height: 300px;
+.dropdownMenu.active {  
+  max-height: 300px;
 }
 
 .buttonBox {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
+  position: relative;
+  display: inline-block;
 }
