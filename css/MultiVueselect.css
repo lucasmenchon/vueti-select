@@ -1,7 +1,3 @@
-.vuetiSelectBox {
-  width: 100%;
-}
-
 .close-btnVueti,
 .open-btnVueti {
   display: flex;
@@ -42,12 +38,9 @@
   filter: none;
 }
 
-.caretDownIcon.open:hover {
-  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
-}
-
 .caretDownIcon.open {
   transform: rotate(180deg);
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
 .caretDownIcon.close {
@@ -101,7 +94,6 @@
   display: flex;
   background-color: #ffffff;
   border-radius: 1px;
-  position: sticky;
   top: 0;
   z-index: 1;
 }
@@ -118,7 +110,6 @@
 .ulBox {
   overflow-y: auto;
   max-height: 300px;
-  position: relative;
   border: 1px solid #cccccc;
   border-top: none;
 }
@@ -127,21 +118,32 @@
   list-style-type: none;
   padding-left: 0;
   margin: 0;
-  position: relative;
 }
 
 .dropdownMenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.2s ease-in-out;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.3s;
 }
 
 .dropdownMenu.active {
   max-height: 350px;
+  transform: scaleY(1);  
+  transition: transform 0.3s;
+  position: absolute;
+  z-index: 1000;
+  background-color: #fff;
+  width: 100%;  
+}
+
+.dropdownContainer {
+  position: relative;
 }
 
 .buttonBox {
   width: 100%;
-  position: relative;
-  display: inline-block;
+  display: inline-block;  
 }
+

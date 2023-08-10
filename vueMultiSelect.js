@@ -1,17 +1,14 @@
 var VueMultiSelect = Vue.component("VueMultiSelect", {
   template: `
 <div id="VueMultiSelect" class="vuetiSelectBox">
+ <div class="dropdownContainer">
     <div class="buttonBox">
     <button type="button" :class="cssBtnBox.customBtn"
     @click="toggleDropdown()">
     <span>{{ selectedOptions.length === 0 ? 'Nenhuma opção selecionada' : selectedOptions.join(', ') }}</span>    
-    <svg xmlns="http://www.w3.org/2000/svg"
-    fill="#000" viewBox="0 0 320 512"
-    class="svgCaretDown caretDownIcon" :class="cssBtnBox.icon">
-    <pathd="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-    </svg>    
+    <i class="svgCaretDown caretDownIcon" :class="cssBtnBox.icon"></i>   
     </div>
-    <div  :class="cssDropdownMenu">
+    <div :class="cssDropdownMenu">
      <div v-show="showDropdownMenu">
       <div class="searchBox">
         <div class="searchIcon">
@@ -49,6 +46,7 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
       </div>
     </div>
   </div>
+ </div>
 </div>
   `,
 
@@ -135,15 +133,16 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
       this.showDropdownMenu = !this.showDropdownMenu;
       if (this.showDropdownMenu) {
         this.cssDropdownMenu = "dropdownMenu active";
-        this.cssBtnBox.icon = "open";
         this.cssBtnBox.customBtn = "open-btnVueti";
+        this.cssBtnBox.icon = "open";        
         this.cssUlBox = "ulBox";
         document.addEventListener("click", this.handleOutsideClick);
       } else {
         this.cssDropdownMenu = "dropdownMenu";
-        this.cssBtnBox.icon = "close";
         this.cssBtnBox.customBtn = "close-btnVueti";
+        this.cssBtnBox.icon = "close";        
         this.cssUlBox = "";
+        this.searchTerm = "";
         document.removeEventListener("click", this.handleOutsideClick);
       }
     },
@@ -160,9 +159,9 @@ var VueMultiSelect = Vue.component("VueMultiSelect", {
       if (this.showDropdownMenu && !this.$el.contains(event.target)) {
         this.cssDropdownMenu = "dropdownMenu";
         this.cssBtnBox.customBtn = "close-btnVueti";
-        this.cssBtnBox.icon = "close";
-        this.searchTerm = "";
+        this.cssBtnBox.icon = "close";        
         this.cssUlBox = "";
+        this.searchTerm = "";
         this.showDropdownMenu = false;
         document.removeEventListener("click", this.handleOutsideClick);
       }
