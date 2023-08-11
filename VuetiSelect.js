@@ -28,7 +28,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                   {{ group.name }}
                 </label>
                 <button type="button" @click="toggleGroup(group)" class="checkboxButton">
-                  <i :class="cssCheckbox"></i>
+                  <i :class="group.cssCheckbox"></i>
                 </button>
               </div>
               <ul v-show="group.expanded" class="ulMenu">
@@ -54,52 +54,62 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         {
           name: "Clothing",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Pants", "Shirt", "Jacket"],
         },
         {
           name: "Accessories",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Glasses", "Cap", "Necklace"],
         },
         {
           name: "Food",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Fruits", "Vegetables", "Meat"],
         },
         {
           name: "Electronics",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Smartphone", "Laptop", "Headphones"],
         },
         {
           name: "Books",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Fiction", "Non-Fiction", "Self-Help"],
         },
         {
           name: "Sports",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Ball", "Racket", "Tennis"],
         },
         { name: "Home", expanded: false, objects: ["Sofa", "Table", "Chair"] },
         {
           name: "Beauty",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Makeup", "Cream", "Perfume"],
         },
         {
           name: "Toys",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Doll", "Car", "Ball"],
         },
         {
           name: "Games",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Board Game", "Cards", "Video Game"],
         },
         {
           name: "Tools",
           expanded: false,
+          cssCheckbox: "svgArrow",
           objects: ["Hammer", "Screwdriver", "Saw"],
         },
       ],
@@ -108,11 +118,11 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       showDropdownMenu: false,
       cssBtnBox: {
         customBtn: "close-btnVueti",
-        icon: "svgCaretDown close",
+        icon: "svgCaretDown closed",
       },
       cssUlBox: "",
       cssDropdownMenu: "dropdownMenu",
-      cssCheckbox: "svgArrow close",
+      cssCheckbox: "svgArrow closed",
       isMouseOver: false,
     };
   },
@@ -139,7 +149,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       } else {
         this.cssDropdownMenu = "dropdownMenu";
         this.cssBtnBox.customBtn = "close-btnVueti";
-        this.cssBtnBox.icon = "svgCaretDown close";
+        this.cssBtnBox.icon = "svgCaretDown closed";
         this.cssUlBox = "";
         this.searchTerm = "";
         document.removeEventListener("click", this.handleOutsideClick);
@@ -153,9 +163,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     toggleGroup(group) {
       group.expanded = !group.expanded;
       if(group.expanded){
-        this.cssCheckbox = "svgArrow open"
+        group.cssCheckbox = "svgArrow open";
       } else{
-        this.cssCheckbox = "svgArrow close"
+        group.cssCheckbox = "svgArrow";
       }
     },
 
@@ -163,7 +173,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       if (this.showDropdownMenu && !this.$el.contains(event.target)) {
         this.cssDropdownMenu = "dropdownMenu";
         this.cssBtnBox.customBtn = "close-btnVueti";
-        this.cssBtnBox.icon = "svgCaretDown close";
+        this.cssBtnBox.icon = "svgCaretDown closed";
         this.cssUlBox = "";
         this.searchTerm = "";
         this.showDropdownMenu = false;
