@@ -1,10 +1,12 @@
-# Vueti Select (Multiple Select Component)
+<h1 style="text-align: center;">Vueti Select (Multiple Select Component)</h1>
 
-Enhance your Vue.js application with the powerful Vue multiple select component. This component provides an solution for selecting multiple items with advanced features.
+<p style="text-align: center;">Enhance your Vue.js application with the powerful VuetiSelect, a versatile multiple select component. This component offers advanced features for selecting multiple items.</p>
 
-## Features
+<h2 style="text-align: center;">Features</h2>
 
-- **Search**: Easily search and find items from a long list.
-- **Clear Search**: Clear the search input at any time.
-- **Multi-Selection**: Select multiple items effortlessly.
-- **Grouping**: Organize items into logical groups.
+<ul>
+  <li><strong>Search:</strong> Easily search and find items from a lengthy list.</li>
+  <li><strong>Clear Search:</strong> Clear the search input at any time.</li>
+  <li><strong>Multi Selection:</strong> Effortlessly select multiple items.</li>
+  <li><strong>Grouping:</strong> Organize items into logical groups.</li>
+</ul>

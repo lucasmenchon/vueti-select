@@ -38,14 +38,14 @@
   filter: none;
 }
 
-.caretDownIcon.open {
+.svgCaretDown.open {
   transform: rotate(180deg);
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
-.caretDownIcon.close {
-  opacity: 1;
+.svgCaretDown.close {  
   transform: rotate(0deg);
+  opacity: 1;
 }
 
 .svgEraser {
@@ -53,15 +53,6 @@
   height: 14px;
   display: inline-block;
   background: url('icons/eraserIcon.svg') no-repeat center / contain;
-  line-height: 16px;
-  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
-}
-
-.svgSearch {
-  background: url('icons/searchIcon.svg') no-repeat center / contain;
-  width: 14px;
-  height: 16px;
-  display: inline-block;
   line-height: 16px;
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
@@ -78,7 +69,16 @@
   justify-content: center;
 }
 
-.searchIcon {
+.svgSearch {
+  background: url('icons/searchIcon.svg') no-repeat center / contain;
+  width: 14px;
+  height: 16px;
+  display: inline-block;
+  line-height: 16px;
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
+}
+
+.svgSearchBox {
   background-color: #eaeaea;
   padding: 0px 12px;
   border: 1px solid #cccccc;
@@ -120,26 +120,55 @@
   margin: 0;
 }
 
-.dropdownMenu {
-  max-height: 0;
-  overflow: hidden;
-  transform-origin: top;
-  transform: scaleY(0);
-  transition: transform 0.3s;
+.ulMenu > li {
+  padding-bottom: 10px;
 }
 
-.dropdownMenu.active {
-  max-height: 350px;
-  transform: scaleY(1);  
-  transition: transform 0.3s;
+.checkboxButton{
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.svgArrow {
+  width: 12px;
+  height: 12px;
+  background: url('icons/arrowIcon.svg') no-repeat center / contain;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
+}
+
+.svgArrow:hover {
+  filter: none;
+}
+
+.svgArrow.open {
+  transform: rotate(90deg);
+  filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
+}
+
+.svgArrow.close {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+.dropdownMenu {  
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
+  width: 100%;
   background-color: #fff;
-  width: 100%;  
 }
 
 .dropdownContainer {
   position: relative;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 .buttonBox {

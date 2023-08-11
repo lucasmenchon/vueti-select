@@ -5,38 +5,37 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/MultiVueselect.css" />
+  <link rel="stylesheet" href="css/VuetiSelect.css" />
   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-  <title>VueMultiSelect Development</title>
+  <title>Vueti Select Development</title>
 </head>
 
 <body>
 
-  <style> 
+  <style>
     .teste {
       width: 100px;
       height: 100px;
       background: black;
       transition: width 0.5s;
     }
-    
+
     .teste:hover {
       width: 300px;
     }
-    </style> 
-  
+  </style>
 
-  <div id="app">          
-      
-      <h1>The transition Property</h1>
-      
-      <p>Hover over the div element below, to see the transition effect:</p>
-      <div class="teste">teste</div>
+  <div id="app">
 
-      <div class="col-md-3">
-        <label for="exampleInputPassword1">Option</label>
-        <vue-multi-select></vue-multi-select>
-      </div>
+    <h1>The transition Property</h1>
+
+    <p>Hover over the div element below, to see the transition effect:</p>
+    <div class="teste">teste</div>
+
+    <div class="col-md-3">
+      <label for="exampleInputPassword1">Option</label>
+      <vuetiselect></vuetiselect>
+    </div>
     <div class="row" style="margin-top: 200px;">
       <div class="col-md-3">
         <label for="exampleInputEmail1">Email address</label>
@@ -48,16 +47,16 @@
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       </div>
-      
+
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>    
-    <script src="vueMultiSelect.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="VuetiSelect.js"></script>
     <script>
       var app = new Vue({
         el: "#app",
         components: {
-          'vue-multi-select': VueMultiSelect
+          'vuetiselect': VuetiSelect
         },
         data: {},
         computed: {},
