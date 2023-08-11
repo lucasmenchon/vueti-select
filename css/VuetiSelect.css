@@ -32,18 +32,18 @@
   display: inline-block;
   transition: transform 0.3s ease;
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
+  opacity: 1;
 }
 
-.svgCaretDown:hover {
-  filter: none;
-}
+
+
 
 .svgCaretDown.open {
   transform: rotate(180deg);
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
-.svgCaretDown.close {  
+.svgCaretDown.closed {  
   transform: rotate(0deg);
   opacity: 1;
 }
@@ -139,18 +139,10 @@
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
 
-.svgArrow:hover {
-  filter: none;
-}
 
 .svgArrow.open {
   transform: rotate(90deg);
   filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
-}
-
-.svgArrow.close {
-  transform: rotate(0deg);
-  opacity: 1;
 }
 
 .dropdownMenu {  
