@@ -4,7 +4,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     <div class="dropdownContainer">
       <div class="buttonBox">
         <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
-          <span>{{ selectedOptions.length === 0 ? 'No Option Selected' : selectedOptions.join(', ') }}</span>
+          <span>{{ selectedOptionsText }}</span>
           <i :class="cssBtnBox.icon"></i>
         </button>
       </div>
@@ -23,13 +23,13 @@ var VuetiSelect = Vue.component("VuetiSelect", {
             <div class="boxSelectAll">
               <label class="labelSelectAll">
                 <input type="checkbox" v-model="selectAll" id="no-margin" class="inputSelectAll" />
-                Select All
+                {{ selectAllTitle }}
               </label>
             </div>
             <ul class="ulMenu">
               <li v-for="group in filteredOptions" class="groupItem">
                 <div class="groupBox">
-                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="selectedOptions" :value="group.name" />
+                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="group.selectAllObjects" @change="toggleSelectAllObjects(group)" :value="group.name" />
                   <label class="groupLabel">
                     {{ group.name }}
                   <button type="button" @click="toggleGroup(group)" class="checkboxButton">
@@ -56,11 +56,17 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   </div>
   `,
   props: {
-    value: Array,    
+    value: Array,
+    noOptionTitle: String,
+    selectAllTitle: String,
+    labelLimit: Number,
   },
   data() {
-    return {     
-      groups: this.value, 
+    return {
+      groups: this.value.map(group => ({
+        ...group,
+        selectAllObjects: false,
+      })),
       selectedOptions: [],
       searchTerm: "",
       showDropdownMenu: false,
@@ -71,8 +77,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       cssUlBox: "",
       cssDropdownMenu: "dropdownMenu",
       isMouseOver: false,
+      selectAll: false,
     };
-  },  
+  },
   computed: {
     filteredOptions() {
       return this.groups.filter(
@@ -82,9 +89,56 @@ var VuetiSelect = Vue.component("VuetiSelect", {
             object.toLowerCase().includes(this.searchTerm.toLowerCase())
           )
       );
+    },    
+    selectedOptionsText() {
+      if (this.selectedOptions.length === 0) {
+        return this.noOptionTitle;
+      } else if (this.selectedOptions.length <= this.labelLimit) {
+        return this.selectedOptions.join(", ");
+      } else {
+        const selectedCount = this.selectedOptions.length - this.labelLimit;
+        const selectedNames = this.selectedOptions
+          .slice(0, this.labelLimit)
+          .join(", ");
+        return `${selectedNames} (+${selectedCount})`;
+      }
     },
   },
+  watch: {
+    selectAll(newValue) {
+      if (newValue) {
+        this.selectedOptions = this.filteredOptions.flatMap(group => group.objects);
+      } else {
+        this.selectedOptions = [];
+      }
+    },
+    // 'groups': {
+    //   handler(groups) {
+    //     groups.forEach((group) => {
+    //       if (group.selectAllObjects) {
+    //         this.selectedOptions.push(...group.objects);
+    //       } else {
+    //         this.selectedOptions = this.selectedOptions.filter(
+    //           (option) => !group.objects.includes(option)
+    //         );
+    //       }
+    //     });
+    //   },
+    //   deep: true,
+    // },
+  },
   methods: {
+
+    toggleSelectAllObjects(group) {
+      if (group.selectAllObjects) {
+        this.selectedOptions = [...this.selectedOptions, group.name, ...group.objects];
+      } else {
+        this.selectedOptions = this.selectedOptions.filter((option) =>
+          option !== group.name && !group.objects.includes(option)
+        );
+      }
+    },
+
     toggleDropdown() {
       this.showDropdownMenu = !this.showDropdownMenu;
       if (this.showDropdownMenu) {

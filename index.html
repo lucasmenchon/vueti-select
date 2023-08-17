@@ -13,17 +13,16 @@
 <body style="background-color: #eaeaea;">
 
   <div id="app">
-
-    <div class="col-md-3">
-      <label for="exampleInputPassword1">Option</label>
-      <vuetiselect v-model="groups"></vuetiselect>
-    </div>
     <div class="row" style="margin-top: 200px;">
       <div class="col-md-3">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
           placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="col-md-3">
+        <label for="vueti">Option</label>
+        <vuetiselect v-model="groups" :no-option-title="'No Option Selected'" :select-all-title="'Select All'":label-limit="2"></vuetiselect>
       </div>
       <div class="col-md-3">
         <label for="exampleInputPassword1">Password</label>
