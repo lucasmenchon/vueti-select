@@ -131,7 +131,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
 
     toggleSelectAllObjects(group) {
       if (group.selectAllObjects) {
-        this.selectedOptions = [...this.selectedOptions, group.name, ...group.objects];
+        this.selectedOptions = [...this.selectedOptions, ...group.objects];
       } else {
         this.selectedOptions = this.selectedOptions.filter((option) =>
           option !== group.name && !group.objects.includes(option)
