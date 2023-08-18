@@ -27,22 +27,22 @@ var VuetiSelect = Vue.component("VuetiSelect", {
               </label>
             </div>
             <ul class="ulMenu">
-              <li v-for="group in filteredOptions" class="groupItem">
+              <li v-for="element in filteredOptions" class="groupItem">
                 <div class="groupBox">
-                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="group.selectAllObjects" @change="toggleSelectAllObjects(group)" :value="group.name" />
+                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="element.selectAllObjects" @change="toggleSelectAllObjects(element)" :value="element.name" />
                   <label class="groupLabel">
-                    {{ group.name }}
-                  <button type="button" @click="toggleGroup(group)" class="checkboxButton">
-                    <i :class="group.cssCheckbox"></i>
+                  <span v-html="element.name"></span>
+                  <button type="button" @click="toggleGroup(element)" class="checkboxButton" v-show="element.subItems.length > 0">
+                    <i :class="element.cssCheckbox"></i>
                   </button>
                   </label>
                 </div>
                 <transition name="fade">
-                  <ul v-show="group.expanded" class="groupObjects">
-                    <li v-for="object in group.objects" :key="object">
+                  <ul v-show="element.expanded" class="groupObjects">
+                    <li v-for="item in element.subItems" :key="item">
                       <label class="">
-                        <input type="checkbox" v-model="selectedOptions" :value="object" />
-                        {{ object }}
+                        <input type="checkbox" v-model="selectedOptions" :value="item" />
+                        {{ item }}
                       </label>
                     </li>
                   </ul>
@@ -63,8 +63,8 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   },
   data() {
     return {
-      groups: this.value.map(group => ({
-        ...group,
+      elements: this.value.map(element => ({
+        ...element,
         selectAllObjects: false,
       })),
       selectedOptions: [],
@@ -82,11 +82,11 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   },
   computed: {
     filteredOptions() {
-      return this.groups.filter(
-        (group) =>
-          group.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          group.objects.some((object) =>
-            object.toLowerCase().includes(this.searchTerm.toLowerCase())
+      return this.elements.filter(
+        (element) =>
+          element.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          element.subItems.some((item) =>
+            item.toLowerCase().includes(this.searchTerm.toLowerCase())
           )
       );
     },    
@@ -107,34 +107,20 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   watch: {
     selectAll(newValue) {
       if (newValue) {
-        this.selectedOptions = this.filteredOptions.flatMap(group => group.objects);
+        this.selectedOptions = this.filteredOptions.flatMap(element => element.subItems);
       } else {
         this.selectedOptions = [];
       }
     },
-    // 'groups': {
-    //   handler(groups) {
-    //     groups.forEach((group) => {
-    //       if (group.selectAllObjects) {
-    //         this.selectedOptions.push(...group.objects);
-    //       } else {
-    //         this.selectedOptions = this.selectedOptions.filter(
-    //           (option) => !group.objects.includes(option)
-    //         );
-    //       }
-    //     });
-    //   },
-    //   deep: true,
-    // },
   },
   methods: {
 
-    toggleSelectAllObjects(group) {
-      if (group.selectAllObjects) {
-        this.selectedOptions = [...this.selectedOptions, ...group.objects];
+    toggleSelectAllObjects(element) {
+      if (element.selectAllObjects) {
+        this.selectedOptions = [...this.selectedOptions, ...element.subItems];
       } else {
         this.selectedOptions = this.selectedOptions.filter((option) =>
-          option !== group.name && !group.objects.includes(option)
+          option !== element.name && !element.subItems.includes(option)
         );
       }
     },
@@ -161,12 +147,12 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       this.searchTerm = "";
     },
 
-    toggleGroup(group) {
-      group.expanded = !group.expanded;
-      if (group.expanded) {
-        group.cssCheckbox = "svgArrow open";
+    toggleGroup(element) {
+      element.expanded = !element.expanded;
+      if (element.expanded) {
+        element.cssCheckbox = "svgArrow open";
       } else {
-        group.cssCheckbox = "svgArrow";
+        element.cssCheckbox = "svgArrow";
       }
     },
 

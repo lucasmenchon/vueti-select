@@ -22,7 +22,11 @@
       </div>
       <div class="col-md-3">
         <label for="vueti">Option</label>
-        <vuetiselect v-model="groups" :no-option-title="'No Option Selected'" :select-all-title="'Select All'":label-limit="2"></vuetiselect>
+        <vuetiselect v-model="elements"
+        :no-option-title="'No Option Selected'"
+        :select-all-title="'Select All'"
+        :label-limit="2">
+        </vuetiselect>
       </div>
       <div class="col-md-3">
         <label for="exampleInputPassword1">Password</label>
@@ -35,73 +39,84 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="VuetiSelect.js"></script>
     <script>
+
       var app = new Vue({
         el: "#app",
         components: {
           'vuetiselect': VuetiSelect
         },
         data: {
-          groups: [
+          elements: [
             {
-              name: "Clothing",
+              id: 1,
+              name: "<div style='color:red;'>Clothing</div>",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Pants", "Shirt", "Jacket"],
+              subItems: [],
             },
             {
+              id: 2,
               name: "Accessories",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Glasses", "Cap", "Necklace"],
+              subItems: ["Glasses", "Cap", "Necklace"],
             },
             {
+              id: 3,
               name: "Food",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Fruits", "Vegetables", "Meat"],
+              subItems: ["Fruits", "Vegetables", "Meat"],
             },
             {
+              id: 4,
               name: "Electronics",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Smartphone", "Laptop", "Headphones"],
+              subItems: ["Smartphone", "Laptop", "Headphones"],
             },
             {
+              id: 5,
               name: "Books",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Fiction", "Non-Fiction", "Self-Help"],
+              subItems: ["Fiction", "Non-Fiction", "Self-Help"],
             },
             {
+              id: 6,
               name: "Sports",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Ball", "Racket", "Tennis"],
+              subItems: ["Ball", "Racket", "Tennis"],
             },
-            { name: "Home", expanded: false, objects: ["Sofa", "Table", "Chair"] },
+            { id: 7, name: "Home", expanded: false, subItems: ["Sofa", "Table", "Chair"] },
             {
+              id: 8,
               name: "Beauty",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Makeup", "Cream", "Perfume"],
+              subItems: ["Makeup", "Cream", "Perfume"],
             },
             {
+              id: 9,
               name: "Toys",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Doll", "Car", "Ball"],
+              subItems: ["Doll", "Car", "Ball"],
             },
             {
+              id: 10,
               name: "Games",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Board Game", "Cards", "Video Game"],
+              subItems: ["Board Game", "Cards", "Video Game"],
             },
             {
+              id: 11,
               name: "Tools",
               expanded: false,
               cssCheckbox: "svgArrow",
-              objects: ["Hammer", "Screwdriver", "Saw"],
+              subItems: ["Hammer", "Screwdriver", "Saw"],
             },
           ],
         },
