@@ -22,10 +22,8 @@
       </div>
       <div class="col-md-3">
         <label for="vueti">Option</label>
-        <vuetiselect v-model="elements"
-        :no-option-title="'No Option Selected'"
-        :select-all-title="'Select All'"
-        :label-limit="2">
+        <vuetiselect v-model="elements" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
+          :label-limit="2">
         </vuetiselect>
       </div>
       <div class="col-md-3">
@@ -48,76 +46,90 @@
         data: {
           elements: [
             {
-              id: 1,
-              name: "<div style='color:red;'>Clothing</div>",
-              expanded: false,
-              cssCheckbox: "svgArrow",
+              id: 0,
+              name: "Clothing",
+              displayName: "<div style='color:red;'>Clothing</div>",
               subItems: [],
             },
             {
-              id: 2,
-              name: "Accessories",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Glasses", "Cap", "Necklace"],
+              id: 1,
+              name: "",
+              displayName: "",
+              subItems: [],
             },
             {
               id: 3,
               name: "Food",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Fruits", "Vegetables", "Meat"],
+              displayName: "Food",
+              subItems: [
+              {
+              id: 11,
+              name: "Fruits",
+              displayName: "<div style='color:red;'>Fruits</div",
+              selected: false,
+              },
+              {
+              id: 11,
+              name: "Vegetables",
+              displayName: "<div style='color:red;'>Vegetables</div",
+              selected: false,
+              },
+              {
+              id: 11,
+              name: "Meat",
+              displayName: "<div style='color:red;'>Meat</div",
+              selected: false,
+              },
+            ],
             },
             {
               id: 4,
               name: "Electronics",
-              expanded: false,
-              cssCheckbox: "svgArrow",
+              displayName: "",
               subItems: ["Smartphone", "Laptop", "Headphones"],
             },
-            {
-              id: 5,
-              name: "Books",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Fiction", "Non-Fiction", "Self-Help"],
-            },
-            {
-              id: 6,
-              name: "Sports",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Ball", "Racket", "Tennis"],
-            },
-            { id: 7, name: "Home", expanded: false, subItems: ["Sofa", "Table", "Chair"] },
-            {
-              id: 8,
-              name: "Beauty",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Makeup", "Cream", "Perfume"],
-            },
-            {
-              id: 9,
-              name: "Toys",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Doll", "Car", "Ball"],
-            },
-            {
-              id: 10,
-              name: "Games",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Board Game", "Cards", "Video Game"],
-            },
-            {
-              id: 11,
-              name: "Tools",
-              expanded: false,
-              cssCheckbox: "svgArrow",
-              subItems: ["Hammer", "Screwdriver", "Saw"],
-            },
+            // {
+            //   id: 5,
+            //   name: "Books",
+            //   displayName: "",
+            //   subItems: ["Fiction", "Non-Fiction", "Self-Help"],
+            // },
+            // {
+            //   id: 6,
+            //   name: "Sports",
+            //   displayName: "",
+            //   subItems: ["Ball", "Racket", "Tennis"],
+            // },
+            // {
+            //   id: 7,
+            //   name: "Home",
+            //   displayName: "",
+            //   subItems: ["Sofa", "Table", "Chair"],
+            // },
+            // {
+            //   id: 8,
+            //   name: "Beauty",
+            //   displayName: "",
+            //   subItems: ["Makeup", "Cream", "Perfume"],
+            // },
+            // {
+            //   id: 9,
+            //   name: "Toys",
+            //   displayName: "",
+            //   subItems: ["Doll", "Car", "Ball"],
+            // },
+            // {
+            //   id: 10,
+            //   name: "Games",
+            //   displayName: "",
+            //   subItems: ["Board Game", "Cards", "Video Game"],
+            // },
+            // {
+            //   id: 11,
+            //   name: "Tools",
+            //   displayName: "",
+            //   subItems: ["Hammer", "Screwdriver", "Saw"],
+            // },
           ],
         },
         computed: {},

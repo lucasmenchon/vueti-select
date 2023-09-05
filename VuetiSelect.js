@@ -29,9 +29,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
             <ul class="ulMenu">
               <li v-for="element in filteredOptions" class="groupItem">
                 <div class="groupBox">
-                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="element.selectAllObjects" @change="toggleSelectAllObjects(element)" :value="element.name" />
+                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="element.selectAllSubItems" @change="selectElementSubItems(element)" :value="element.id" />
                   <label class="groupLabel">
-                  <span v-html="element.name"></span>
+                  <span v-html="element.displayName"></span>
                   <button type="button" @click="toggleGroup(element)" class="checkboxButton" v-show="element.subItems.length > 0">
                     <i :class="element.cssCheckbox"></i>
                   </button>
@@ -40,9 +40,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                 <transition name="fade">
                   <ul v-show="element.expanded" class="groupObjects">
                     <li v-for="item in element.subItems" :key="item">
-                      <label class="">
-                        <input type="checkbox" v-model="selectedOptions" :value="item" />
-                        {{ item }}
+                    <input type="checkbox" v-model="item.selected" :value="item.id" @change="toggleSingleItem(item, element)" />
+                      <label>
+                      <span v-html="item.displayName"></span>                        
                       </label>
                     </li>
                   </ul>
@@ -61,11 +61,22 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     selectAllTitle: String,
     labelLimit: Number,
   },
+
   data() {
     return {
-      elements: this.value.map(element => ({
-        ...element,
-        selectAllObjects: false,
+      elements: this.value.map((element) => ({
+        id: element.id,
+        name: element.name,
+        displayName: element.displayName,
+        subItems: element.subItems.map((subItem) => ({
+          id: subItem.id,
+          name: subItem.name,
+          displayName: subItem.displayName,
+          selected: false,
+        })),
+        selectAllSubItems: false,
+        expanded: false,
+        cssCheckbox: "svgArrow",
       })),
       selectedOptions: [],
       searchTerm: "",
@@ -80,16 +91,18 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       selectAll: false,
     };
   },
+
   computed: {
     filteredOptions() {
       return this.elements.filter(
         (element) =>
           element.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           element.subItems.some((item) =>
-            item.toLowerCase().includes(this.searchTerm.toLowerCase())
+            item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
           )
       );
-    },    
+    },
+
     selectedOptionsText() {
       if (this.selectedOptions.length === 0) {
         return this.noOptionTitle;
@@ -104,26 +117,83 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       }
     },
   },
+
   watch: {
     selectAll(newValue) {
       if (newValue) {
-        this.selectedOptions = this.filteredOptions.flatMap(element => element.subItems);
+        const allSelected = this.elements.every((element) =>
+          element.subItems.every((subItem) => subItem.selected)
+        );
+
+        if (allSelected) {
+          this.elements.forEach((element) => {
+            element.selectAllSubItems = true;
+            element.subItems.forEach((subItem) => {
+              subItem.selected = true;
+            });
+          });
+
+          this.selectedOptions = this.elements.flatMap(
+            (element) => element.subItems
+          );
+        }
       } else {
         this.selectedOptions = [];
+        this.elements.forEach((element) => {
+          element.selectAllSubItems = false;
+          element.subItems.forEach((subItem) => {
+            subItem.selected = false;
+          });
+        });
       }
     },
   },
-  methods: {
 
-    toggleSelectAllObjects(element) {
-      if (element.selectAllObjects) {
-        this.selectedOptions = [...this.selectedOptions, ...element.subItems];
-      } else {
-        this.selectedOptions = this.selectedOptions.filter((option) =>
-          option !== element.name && !element.subItems.includes(option)
-        );
+  methods: {
+    selectElementSubItems(element) {
+      if (element.subItems.length > 0) {
+        element.subItems.forEach((subItem) => {
+          subItem.selected = element.selectAllSubItems;
+        });
       }
     },
+
+    toggleSingleItem(item, parentElement) {
+      if (item.selected) {
+        this.selectedOptions.push(item.name); // Use item.displayName em vez de item.name
+      } else {
+        this.selectedOptions = this.selectedOptions.filter(
+          (selectedItem) => selectedItem !== item.name // Use item.displayName em vez de item.name
+        );
+      }
+
+      // Verifique se todos os subitens do pai estão selecionados
+      parentElement.selectAllSubItems = parentElement.subItems.every(
+        (subItem) => subItem.selected
+      );
+
+      // Verifique se todos os pais estão selecionados
+      this.selectAll = this.elements.every((element) =>
+        element.subItems.every((subItem) => subItem.selected)
+      );
+    },
+
+    // toggleSelect(element) {
+    //   const subItems = element.subItems;
+    //   if (subItems.length > 0) {
+    //     element.selectAllSubItems = !element.selectAllSubItems;
+
+    //     // Atualize a seleção dos subitens com base na seleção do pai
+    //     subItems.forEach((subItem) => {
+    //       subItem.selected = element.selectAllSubItems;
+    //     });
+
+    //     // Atualize a seleção global
+    //     this.selectAll = this.elements.every((element) =>
+    //       element.subItems.every((subItem) => subItem.selected)
+    //     );
+    //   }
+    // },
 
     toggleDropdown() {
       this.showDropdownMenu = !this.showDropdownMenu;
@@ -168,6 +238,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       }
     },
   },
+
   beforeDestroy() {
     document.removeEventListener("click", this.handleOutsideClick);
   },
