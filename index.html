@@ -22,7 +22,8 @@
       <div class="col-md-3">
         <label for="vueti">Option</label>
 
-        <vuetiselect v-model="elements" :no-option-title="'No Option Selected'" :select-all-title="'Select All'" :label-limit="2"></vuetiselect>
+        <vuetiselect v-model="elements" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
+          :label-limit="2"></vuetiselect>
 
       </div>
       <div class="col-md-3">
@@ -45,16 +46,19 @@
         data: {
           elements: [
             {
-              id: 0,
+              id: 1,
               name: "Clothing",
               displayName: "<div style='color:red;'>Clothing</div>",
               subItems: [],
+              itemSelected: false,
+
             },
             {
-              id: 1,
-              name: "",
-              displayName: "",
+              id: 2,
+              name: "teste",
+              displayName: "teste",
               subItems: [],
+              itemSelected: false,
             },
             {
               id: 3,
@@ -65,27 +69,30 @@
                   id: 11,
                   name: "Fruits",
                   displayName: "<div style='color:green;'>Fruits</div",
-                  selected: false,
+                  subItemSelected: false,
                 },
                 {
-                  id: 11,
+                  id: 12,
                   name: "Vegetables",
                   displayName: "<div style='color:red;'>Vegetables</div",
-                  selected: false,
+                  subItemSelected: false,
+
                 },
                 {
-                  id: 11,
+                  id: 13,
                   name: "Meat",
                   displayName: "<div style='color:red;'>Meat</div",
-                  selected: false,
+                  subItemSelected: false,
                 },
               ],
+              itemSelected: false,
             },
             {
               id: 4,
               name: "Electronics",
-              displayName: "",
-              subItems: ["Smartphone", "Laptop", "Headphones"],
+              displayName: "Electronics",
+              subItems: [],
+              itemSelected: false,
             },
             // {
             //   id: 5,
