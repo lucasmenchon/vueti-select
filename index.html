@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,9 +21,9 @@
       </div>
       <div class="col-md-3">
         <label for="vueti">Option</label>
-        <vuetiselect v-model="elements" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
-          :label-limit="2">
-        </vuetiselect>
+
+        <vuetiselect v-model="elements" :no-option-title="'No Option Selected'" :select-all-title="'Select All'" :label-limit="2"></vuetiselect>
+
       </div>
       <div class="col-md-3">
         <label for="exampleInputPassword1">Password</label>
@@ -62,25 +61,25 @@
               name: "Food",
               displayName: "Food",
               subItems: [
-              {
-              id: 11,
-              name: "Fruits",
-              displayName: "<div style='color:red;'>Fruits</div",
-              selected: false,
-              },
-              {
-              id: 11,
-              name: "Vegetables",
-              displayName: "<div style='color:red;'>Vegetables</div",
-              selected: false,
-              },
-              {
-              id: 11,
-              name: "Meat",
-              displayName: "<div style='color:red;'>Meat</div",
-              selected: false,
-              },
-            ],
+                {
+                  id: 11,
+                  name: "Fruits",
+                  displayName: "<div style='color:green;'>Fruits</div",
+                  selected: false,
+                },
+                {
+                  id: 11,
+                  name: "Vegetables",
+                  displayName: "<div style='color:red;'>Vegetables</div",
+                  selected: false,
+                },
+                {
+                  id: 11,
+                  name: "Meat",
+                  displayName: "<div style='color:red;'>Meat</div",
+                  selected: false,
+                },
+              ],
             },
             {
               id: 4,

@@ -1,59 +1,62 @@
 var VuetiSelect = Vue.component("VuetiSelect", {
   template: `
   <div id="VuetiSelect" class="vuetiSelectBox">
-    <div class="dropdownContainer">
-      <div class="buttonBox">
-        <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
-          <span>{{ selectedOptionsText }}</span>
-          <i :class="cssBtnBox.icon"></i>
-        </button>
-      </div>
-      <transition name="fade">
-        <div v-if="showDropdownMenu" :class="cssDropdownMenu">
-          <div class="searchBox">
-            <div class="svgSearchBox">
-              <i class="svgSearch"></i>
-            </div>
-            <input type="text" v-model="searchTerm" placeholder="Search" class="searchBar" />
-            <button class="clearButton" type="button" @click="clearSearch">
-              <i class="svgEraser"></i>
-            </button>
-          </div>
-          <div :class="cssUlBox">
-            <div class="boxSelectAll">
-              <label class="labelSelectAll">
-                <input type="checkbox" v-model="selectAll" id="no-margin" class="inputSelectAll" />
-                {{ selectAllTitle }}
-              </label>
-            </div>
-            <ul class="ulMenu">
-              <li v-for="element in filteredOptions" class="groupItem">
-                <div class="groupBox">
-                  <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="element.selectAllSubItems" @change="selectElementSubItems(element)" :value="element.id" />
-                  <label class="groupLabel">
-                  <span v-html="element.displayName"></span>
-                  <button type="button" @click="toggleGroup(element)" class="checkboxButton" v-show="element.subItems.length > 0">
-                    <i :class="element.cssCheckbox"></i>
-                  </button>
-                  </label>
-                </div>
-                <transition name="fade">
-                  <ul v-show="element.expanded" class="groupObjects">
-                    <li v-for="item in element.subItems" :key="item">
-                    <input type="checkbox" v-model="item.selected" :value="item.id" @change="toggleSingleItem(item, element)" />
-                      <label>
-                      <span v-html="item.displayName"></span>                        
-                      </label>
-                    </li>
-                  </ul>
-                </transition>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </transition>
+  <div class="dropdownContainer">
+    <div class="buttonBox">
+      <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
+        <span>{{ selectedOptionsText }}</span>
+        <i :class="cssBtnBox.icon"></i>
+      </button>
     </div>
+    <transition name="fade">
+      <div v-if="showDropdownMenu" :class="cssDropdownMenu">
+        <div class="searchBox">
+          <div class="svgSearchBox">
+            <i class="svgSearch"></i>
+          </div>
+          <input type="text" v-model="searchTerm" placeholder="Search" class="searchBar" />
+          <button class="clearButton" type="button" @click="clearSearch">
+            <i class="svgEraser"></i>
+          </button>
+        </div>
+        <div :class="cssUlBox">
+          <div class="boxSelectAll">
+            <label class="labelSelectAll">
+              <input type="checkbox" v-model="selectAll" id="no-margin" class="inputSelectAll" />
+              {{ selectAllTitle }}
+            </label>
+          </div>
+          <ul class="ulMenu">
+            <li v-for="item in filteredOptions" class="groupItem">
+              <div class="groupBox">
+                <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="item.itemSelected"
+                  @change="toggleItemSelect(item)" :value="item.id" />
+                <label class="groupLabel">
+                  <span v-html="item.displayName"></span>
+                  <button type="button" @click="toggleGroup(item)" class="checkboxButton"
+                    v-show="item.subItems.length > 0">
+                    <i :class="item.cssCheckbox"></i>
+                  </button>
+                </label>
+              </div>
+              <transition name="fade">
+                <ul v-show="item.expanded" class="groupObjects">
+                  <li v-for="subItem in item.subItems" :key="subItem">
+                    <input type="checkbox" v-model="subItem.selected" :value="subItem.id"
+                      @change="toggleSingleSubItem(item)" />
+                    <label>
+                      <span v-html="subItem.displayName"></span>
+                    </label>
+                  </li>
+                </ul>
+              </transition>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </transition>
   </div>
+</div>
   `,
   props: {
     value: Array,
@@ -61,20 +64,19 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     selectAllTitle: String,
     labelLimit: Number,
   },
-
   data() {
     return {
-      elements: this.value.map((element) => ({
-        id: element.id,
-        name: element.name,
-        displayName: element.displayName,
-        subItems: element.subItems.map((subItem) => ({
+      items: this.value.map((item) => ({
+        id: item.id,
+        name: item.name,
+        displayName: item.displayName,
+        subItems: item.subItems.map((subItem) => ({
           id: subItem.id,
           name: subItem.name,
           displayName: subItem.displayName,
           selected: false,
         })),
-        selectAllSubItems: false,
+        itemSelected: false,
         expanded: false,
         cssCheckbox: "svgArrow",
       })),
@@ -91,110 +93,97 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       selectAll: false,
     };
   },
-
   computed: {
     filteredOptions() {
-      return this.elements.filter(
-        (element) =>
-          element.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          element.subItems.some((item) =>
-            item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      return this.items.filter(
+        (item) =>
+          item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          item.subItems.some((subItem) =>
+            subItem.name.toLowerCase().includes(this.searchTerm.toLowerCase())
           )
       );
     },
-
     selectedOptionsText() {
       if (this.selectedOptions.length === 0) {
         return this.noOptionTitle;
       } else if (this.selectedOptions.length <= this.labelLimit) {
-        return this.selectedOptions.join(", ");
+        return this.selectedOptions.map((item) => item.name).join(", ");
       } else {
         const selectedCount = this.selectedOptions.length - this.labelLimit;
         const selectedNames = this.selectedOptions
           .slice(0, this.labelLimit)
+          .map((item) => item.name)
           .join(", ");
         return `${selectedNames} (+${selectedCount})`;
       }
     },
   },
-
   watch: {
-    selectAll(newValue) {
-      if (newValue) {
-        const allSelected = this.elements.every((element) =>
-          element.subItems.every((subItem) => subItem.selected)
+    selectAll(value) {
+      if (value) {
+        const allSelected = this.items.every((item) =>
+          item.subItems.every((subItem) => subItem.selected)
         );
-
         if (allSelected) {
-          this.elements.forEach((element) => {
-            element.selectAllSubItems = true;
-            element.subItems.forEach((subItem) => {
+          this.items.forEach((item) => {
+            item.itemSelected = true;
+            item.subItems.forEach((subItem) => {
               subItem.selected = true;
             });
           });
-
-          this.selectedOptions = this.elements.flatMap(
-            (element) => element.subItems
-          );
+          this.selectedOptions = this.items.flatMap((item) => item.subItems);
         }
       } else {
         this.selectedOptions = [];
-        this.elements.forEach((element) => {
-          element.selectAllSubItems = false;
-          element.subItems.forEach((subItem) => {
+        this.items.forEach((item) => {
+          item.itemSelected = false;
+          item.subItems.forEach((subItem) => {
             subItem.selected = false;
           });
         });
       }
     },
   },
-
   methods: {
-    selectElementSubItems(element) {
-      if (element.subItems.length > 0) {
-        element.subItems.forEach((subItem) => {
-          subItem.selected = element.selectAllSubItems;
+    toggleSingleSubItem(item) {
+      item.itemSelected = item.subItems.every((subItem) => subItem.selected);
+      this.selectAll = this.items.every((item) =>
+        item.subItems.every((subItem) => subItem.selected)
+      );
+      this.updateSelectedOptions();
+    },
+    toggleSingleItem(item) {
+      if (item.itemSelected) {
+        this.selectedOptions.push(item);
+      } else {
+        const index = this.selectedOptions.findIndex(
+          (selectedItem) => selectedItem.id === item.id
+        );
+        if (index !== -1) {
+          this.selectedOptions.splice(index, 1);
+        }
+      }
+    },
+    toggleItemSelect(item) {
+      if (item.subItems && item.subItems.length > 0) {
+        this.selectAllSubItems(item);
+        this.updateSelectedOptions();
+      } else {
+        this.toggleSingleItem(item);
+      }
+    },
+    selectAllSubItems(item) {
+      if (item.subItems.length > 0) {
+        item.subItems.forEach((subItem) => {
+          subItem.selected = item.itemSelected;
         });
       }
     },
-
-    toggleSingleItem(item, parentElement) {
-      if (item.selected) {
-        this.selectedOptions.push(item.name); // Use item.displayName em vez de item.name
-      } else {
-        this.selectedOptions = this.selectedOptions.filter(
-          (selectedItem) => selectedItem !== item.name // Use item.displayName em vez de item.name
-        );
-      }
-
-      // Verifique se todos os subitens do pai estão selecionados
-      parentElement.selectAllSubItems = parentElement.subItems.every(
-        (subItem) => subItem.selected
-      );
-
-      // Verifique se todos os pais estão selecionados
-      this.selectAll = this.elements.every((element) =>
-        element.subItems.every((subItem) => subItem.selected)
-      );
+    updateSelectedOptions() {
+      this.selectedOptions = this.items
+        .flatMap((item) => item.subItems)
+        .filter((subItem) => subItem.selected);
     },
-
-    // toggleSelect(element) {
-    //   const subItems = element.subItems;
-    //   if (subItems.length > 0) {
-    //     element.selectAllSubItems = !element.selectAllSubItems;
-
-    //     // Atualize a seleção dos subitens com base na seleção do pai
-    //     subItems.forEach((subItem) => {
-    //       subItem.selected = element.selectAllSubItems;
-    //     });
-
-    //     // Atualize a seleção global
-    //     this.selectAll = this.elements.every((element) =>
-    //       element.subItems.every((subItem) => subItem.selected)
-    //     );
-    //   }
-    // },
-
     toggleDropdown() {
       this.showDropdownMenu = !this.showDropdownMenu;
       if (this.showDropdownMenu) {
@@ -212,20 +201,17 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         document.removeEventListener("click", this.handleOutsideClick);
       }
     },
-
     clearSearch() {
       this.searchTerm = "";
     },
-
-    toggleGroup(element) {
-      element.expanded = !element.expanded;
-      if (element.expanded) {
-        element.cssCheckbox = "svgArrow open";
+    toggleGroup(item) {
+      item.expanded = !item.expanded;
+      if (item.expanded) {
+        item.cssCheckbox = "svgArrow open";
       } else {
-        element.cssCheckbox = "svgArrow";
+        item.cssCheckbox = "svgArrow";
       }
     },
-
     handleOutsideClick(event) {
       if (this.showDropdownMenu && !this.$el.contains(event.target)) {
         this.cssDropdownMenu = "dropdownMenu";
@@ -238,7 +224,6 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       }
     },
   },
-
   beforeDestroy() {
     document.removeEventListener("click", this.handleOutsideClick);
   },
