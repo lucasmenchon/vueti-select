@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +23,7 @@
       <div class="col-md-3">
         <label for="vueti">Option</label>
 
-        <vuetiselect v-model="elements" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
+        <vuetiselect :value="items" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
           :label-limit="2"></vuetiselect>
 
       </div>
@@ -44,19 +45,18 @@
           'vuetiselect': VuetiSelect
         },
         data: {
-          elements: [
+          items: [
             {
               id: 1,
               name: "Clothing",
               displayName: "<div style='color:red;'>Clothing</div>",
               subItems: [],
               itemSelected: false,
-
             },
             {
               id: 2,
-              name: "teste",
-              displayName: "teste",
+              name: "tésté",
+              displayName: "tésté",
               subItems: [],
               itemSelected: false,
             },
@@ -94,48 +94,6 @@
               subItems: [],
               itemSelected: false,
             },
-            // {
-            //   id: 5,
-            //   name: "Books",
-            //   displayName: "",
-            //   subItems: ["Fiction", "Non-Fiction", "Self-Help"],
-            // },
-            // {
-            //   id: 6,
-            //   name: "Sports",
-            //   displayName: "",
-            //   subItems: ["Ball", "Racket", "Tennis"],
-            // },
-            // {
-            //   id: 7,
-            //   name: "Home",
-            //   displayName: "",
-            //   subItems: ["Sofa", "Table", "Chair"],
-            // },
-            // {
-            //   id: 8,
-            //   name: "Beauty",
-            //   displayName: "",
-            //   subItems: ["Makeup", "Cream", "Perfume"],
-            // },
-            // {
-            //   id: 9,
-            //   name: "Toys",
-            //   displayName: "",
-            //   subItems: ["Doll", "Car", "Ball"],
-            // },
-            // {
-            //   id: 10,
-            //   name: "Games",
-            //   displayName: "",
-            //   subItems: ["Board Game", "Cards", "Video Game"],
-            // },
-            // {
-            //   id: 11,
-            //   name: "Tools",
-            //   displayName: "",
-            //   subItems: ["Hammer", "Screwdriver", "Saw"],
-            // },
           ],
         },
         computed: {},

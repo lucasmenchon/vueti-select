@@ -27,7 +27,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
               {{ selectAllTitle }}
             </label>
           </div>
-          <ul class="ulMenu">          
+          <ul class="ulMenu">
             <li v-for="item in filteredItems" :key="item.id" class="groupItem">
               <div class="groupBox">
                 <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="item.itemSelected"
@@ -75,13 +75,12 @@ var VuetiSelect = Vue.component("VuetiSelect", {
           id: subItem.id,
           name: subItem.name,
           displayName: subItem.displayName,
-          subItemSelected: false,
+          subItemSelected: subItem.subItemSelected,
         })),
-        itemSelected: false,
-        expanded: false,
+        itemSelected: item.itemSelected,
+        expanded: item.expanded,
         cssCheckbox: "svgArrow",
       })),
-      filteredItems: [],
       selectedOptions: [],
       searchTerm: "",
       showDropdownMenu: false,
@@ -96,24 +95,45 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     };
   },
   computed: {
+    filteredItems() {
+      if (this.searchTerm == "") {
+        return this.items;
+      }
+      const normalizedSearchTerm = this.normalizeText(this.searchTerm);
+      const matchingItems = this.items.filter((item) => {
+        const normalizedItemName = this.normalizeText(item.name);
+        const itemNameMatches =
+          normalizedItemName.includes(normalizedSearchTerm);
+        const matchingSubItems = item.subItems.filter((subItem) => {
+          const normalizedSubItemName = this.normalizeText(subItem.name);
+          return normalizedSubItemName.includes(normalizedSearchTerm);
+        });
+        return itemNameMatches || matchingSubItems.length > 0;
+      });
+      return matchingItems;
+    },
     allSelected() {
-      const explicitSelection = this.selectedAll; // Estado explícito do checkbox selectedAll
-      const automaticSelection = this.items.every(item => {
+      const explicitSelection = this.selectedAll;
+      const automaticSelection = this.items.every((item) => {
         const itemSelected = item.itemSelected;
-        const subItemsSelected = !item.subItems || item.subItems.every(subItem => subItem.subItemSelected);
+        const subItemsSelected =
+          !item.subItems ||
+          item.subItems.every((subItem) => subItem.subItemSelected);
         return itemSelected && subItemsSelected;
       });
       return explicitSelection || automaticSelection;
     },
-
     selectedOptionsText() {
       if (this.selectedOptions.length === 0) {
         return this.noOptionTitle;
       } else if (this.selectedOptions.length <= this.labelLimit) {
-        return this.selectedOptions.map(item => item.name).join(", ");
+        return this.selectedOptions.map((item) => item.name).join(", ");
       } else {
         const selectedCount = this.selectedOptions.length - this.labelLimit;
-        const selectedNames = this.selectedOptions.slice(0, this.labelLimit).map(item => item.name).join(", ");
+        const selectedNames = this.selectedOptions
+          .slice(0, this.labelLimit)
+          .map((item) => item.name)
+          .join(", ");
         return `${selectedNames} (+${selectedCount})`;
       }
     },
@@ -121,47 +141,34 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   watch: {
     items: {
       handler() {
-        const selectAll = this.items.every(item => {
+        const selectAll = this.items.every((item) => {
           const itemSelected = item.itemSelected;
-          const subItemsSelected = !item.subItems || item.subItems.every(subItem => subItem.subItemSelected);
+          const subItemsSelected =
+            !item.subItems ||
+            item.subItems.every((subItem) => subItem.subItemSelected);
           return itemSelected && subItemsSelected;
         });
         this.selectedAll = selectAll;
       },
       deep: true,
     },
-    searchTerm(newSearchTerm) {
-      if (newSearchTerm !== '') {
-        this.filteredItems = this.items.filter(item => {
-          const itemNameMatches = item.name.toLowerCase().includes(newSearchTerm.toLowerCase());
-          const matchingSubItems = item.subItems && item.subItems.filter(subItem =>
-            subItem.name.toLowerCase().includes(newSearchTerm.toLowerCase())
-          );
-          return itemNameMatches || (matchingSubItems && matchingSubItems.length > 0);
-        });
-      } else {
-        // Se o searchTerm estiver vazio, redefina os resultados filtrados
-        this.filteredItems = this.items;
-      }
-    },
   },
   methods: {
-
     toggleSelectAll() {
       if (this.selectedAll) {
-        this.items.forEach(item => {
+        this.items.forEach((item) => {
           item.itemSelected = true;
           if (item.subItems) {
-            item.subItems.forEach(subItem => {
+            item.subItems.forEach((subItem) => {
               subItem.subItemSelected = true;
             });
           }
         });
       } else {
-        this.items.forEach(item => {
+        this.items.forEach((item) => {
           item.itemSelected = false;
           if (item.subItems) {
-            item.subItems.forEach(subItem => {
+            item.subItems.forEach((subItem) => {
               subItem.subItemSelected = false;
             });
           }
@@ -169,12 +176,12 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       }
       this.updateSelectedOptions();
     },
-
     toggleSingleSubItem(item) {
-      item.itemSelected = item.subItems.every(subItem => subItem.subItemSelected);
+      item.itemSelected = item.subItems.every(
+        (subItem) => subItem.subItemSelected
+      );
       this.updateSelectedOptions();
     },
-
     toggleSingleItem(item) {
       if (item.itemSelected) {
         this.selectedOptions.push(item);
@@ -182,7 +189,6 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         this.removeSelectedItem(item);
       }
     },
-
     toggleItemSelect(item) {
       if (item.subItems && item.subItems.length > 0) {
         this.toggleSubItems(item);
@@ -190,16 +196,14 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         this.toggleSingleItem(item);
       }
     },
-
     toggleSubItems(item) {
       if (item.subItems.length > 0) {
-        item.subItems.forEach(subItem => {
+        item.subItems.forEach((subItem) => {
           subItem.subItemSelected = item.itemSelected;
         });
       }
       this.updateSelectedOptions();
     },
-
     toggleGroup(item) {
       item.expanded = !item.expanded;
       if (item.expanded) {
@@ -208,28 +212,32 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         item.cssCheckbox = "svgArrow";
       }
     },
-
     removeSelectedItem(item) {
-      const index = this.selectedOptions.findIndex(selectedItem => selectedItem.id === item.id);
+      const index = this.selectedOptions.findIndex(
+        (selectedItem) => selectedItem.id === item.id
+      );
       if (index !== -1) {
         this.selectedOptions.splice(index, 1);
       }
     },
-
     updateSelectedOptions() {
-      this.selectedOptions = this.items.flatMap(item => {
+      this.selectedOptions = this.items.flatMap((item) => {
         if (!item.subItems || item.subItems.length === 0) {
           return item.itemSelected ? [item] : [];
         } else {
-          return item.subItems.filter(subItem => subItem.subItemSelected);
+          return item.subItems.filter((subItem) => subItem.subItemSelected);
         }
       });
     },
-
     clearSearch() {
       this.searchTerm = "";
     },
-
+    normalizeText(text) {
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    },
     toggleDropdown() {
       this.showDropdownMenu = !this.showDropdownMenu;
       if (this.showDropdownMenu) {
@@ -247,7 +255,6 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         document.removeEventListener("click", this.handleOutsideClick);
       }
     },
-
     handleOutsideClick(event) {
       if (this.showDropdownMenu && !this.$el.contains(event.target)) {
         this.cssDropdownMenu = "dropdownMenu";
@@ -259,8 +266,5 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         document.removeEventListener("click", this.handleOutsideClick);
       }
     },
-  },
-  beforeDestroy() {
-    document.removeEventListener("click", this.handleOutsideClick);
   },
 });
