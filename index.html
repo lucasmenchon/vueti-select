@@ -32,75 +32,76 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       </div>
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="test z-index vueti select">
+      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="test z-index vueti select">
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="VuetiSelect.js"></script>
-    <script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="VuetiSelect.js"></script>
+  <script>
 
-      var app = new Vue({
-        el: "#app",
-        components: {
-          'vuetiselect': VuetiSelect
-        },
-        data: {
-          items: [
-            {
-              id: 1,
-              name: "Clothing",
-              displayName: "<div style='color:red;'>Clothing</div>",
-              subItems: [],
-              itemSelected: false,
-            },
-            {
-              id: 2,
-              name: "tésté",
-              displayName: "tésté",
-              subItems: [],
-              itemSelected: false,
-            },
-            {
-              id: 3,
-              name: "Food",
-              displayName: "Food",
-              subItems: [
-                {
-                  id: 11,
-                  name: "Fruits",
-                  displayName: "<div style='color:green;'>Fruits</div",
-                  subItemSelected: false,
-                },
-                {
-                  id: 12,
-                  name: "Vegetables",
-                  displayName: "<div style='color:red;'>Vegetables</div",
-                  subItemSelected: false,
+    var app = new Vue({
+      el: "#app",
+      components: {
+        'vuetiselect': VuetiSelect
+      },
+      data: {
+        items: [
+          {
+            id: 1,
+            name: "Clothing",
+            displayName: "<div style='color:red;'>Clothing</div>",
+            subItems: [],
+            itemSelected: false,
+          },
+          {
+            id: 2,
+            name: "tésté",
+            displayName: "tésté",
+            subItems: [],
+            itemSelected: false,
+          },
+          {
+            id: 3,
+            name: "Food",
+            displayName: "Food",
+            subItems: [
+              {
+                id: 11,
+                name: "Fruits",
+                displayName: "<div style='color:green;'>Fruits</div",
+                subItemSelected: false,
+              },
+              {
+                id: 12,
+                name: "Vegetables",
+                displayName: "<div style='color:red;'>Vegetables</div",
+                subItemSelected: false,
 
-                },
-                {
-                  id: 13,
-                  name: "Meat",
-                  displayName: "<div style='color:red;'>Meat</div",
-                  subItemSelected: false,
-                },
-              ],
-              itemSelected: false,
-            },
-            {
-              id: 4,
-              name: "Electronics",
-              displayName: "Electronics",
-              subItems: [],
-              itemSelected: false,
-            },
-          ],
-        },
-        computed: {},
-        watch: {},
-        methods: {}
-      });
-    </script>
+              },
+              {
+                id: 13,
+                name: "Meat",
+                displayName: "<div style='color:red;'>Meat</div",
+                subItemSelected: false,
+              },
+            ],
+            itemSelected: false,
+          },
+          {
+            id: 4,
+            name: "Electronics",
+            displayName: "Electronics",
+            subItems: [],
+            itemSelected: false,
+          },
+        ],
+      },
+      computed: {},
+      watch: {},
+      methods: {}
+    });
+  </script>
 </body>
 
 </html>
