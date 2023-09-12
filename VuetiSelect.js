@@ -1,6 +1,7 @@
 var VuetiSelect = Vue.component("VuetiSelect", {
+  el: "#VuetiSelect",
   template: `
-  <div id="VuetiSelect" class="vuetiSelectBox">
+<div id="VuetiSelect" class="vuetiSelectBox">
   <div class="dropdownContainer">
     <div class="buttonBox">
       <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
@@ -22,7 +23,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         <div :class="cssUlBox">
           <div class="boxSelectAll">
             <label class="labelSelectAll">
-              <input type="checkbox" id="no-margin" class="inputSelectAll" @change="toggleSelectAll"
+              <input type="checkbox" id="noMargin" class="inputSelectAll" @change="toggleSelectAll"
                 v-model="selectedAll" />
               {{ selectAllTitle }}
             </label>
@@ -30,9 +31,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
           <ul class="ulMenu">
             <li v-for="item in filteredItems" :key="item.id" class="groupItem">
               <div class="groupBox">
-                <input type="checkbox" id="no-margin" class="groupCheckbox" v-model="item.itemSelected"
-                  @change="toggleItemSelect(item)" :value="item.id" />
-                <label class="groupLabel">
+                <label class="itemLabel">
+                  <input type="checkbox" id="noMargin" class="groupCheckbox" v-model="item.itemSelected"
+                    @change="toggleItemSelect(item)" :value="item.id" />
                   <span v-html="item.displayName"></span>
                   <button type="button" @click="toggleGroup(item)" class="checkboxButton"
                     v-show="item.subItems.length > 0">
@@ -43,9 +44,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
               <transition name="fade">
                 <ul v-show="item.expanded" class="groupObjects">
                   <li v-for="subItem in item.subItems" :key="subItem.id">
-                    <input type="checkbox" v-model="subItem.subItemSelected" :value="subItem.id"
-                      @change="toggleSingleSubItem(item)" />
-                    <label>
+                    <label class="subItemLabel">
+                      <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
+                        @change="toggleSingleSubItem(item)" />
                       <span v-html="subItem.displayName"></span>
                     </label>
                   </li>
@@ -81,6 +82,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         expanded: item.expanded,
         cssCheckbox: "svgArrow",
       })),
+      bindItems: [],
       selectedOptions: [],
       searchTerm: "",
       showDropdownMenu: false,
@@ -228,6 +230,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
           return item.subItems.filter((subItem) => subItem.subItemSelected);
         }
       });
+      this.$emit('bindOptions', this.selectedOptions);
     },
     clearSearch() {
       this.searchTerm = "";

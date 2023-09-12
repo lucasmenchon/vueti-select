@@ -23,8 +23,9 @@
       <div class="col-md-3">
         <label for="vueti">Option</label>
 
-        <vuetiselect :value="items" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
-          :label-limit="2"></vuetiselect>
+        <vueti-select v-model="items" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
+          :label-limit="99" :bind-options="selectedValues">
+        </vueti-select>
 
       </div>
       <div class="col-md-3">
@@ -39,13 +40,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script src="VuetiSelect.js"></script>
   <script>
-
     var app = new Vue({
       el: "#app",
       components: {
-        'vuetiselect': VuetiSelect
+        'vueti-select': VuetiSelect
       },
       data: {
+        selectedValues: [],
         items: [
           {
             id: 1,

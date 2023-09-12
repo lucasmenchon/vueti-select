@@ -1,4 +1,4 @@
-#no-margin{
+#noMargin{
   margin: 0;
 }
 
@@ -127,13 +127,19 @@
   margin-bottom: 5px;
 }
 
-.groupLabel {  
+.itemLabel {  
+  display: flex;
+  align-items: center;
+  cursor: pointer;  
+  margin-left: 5px;
+  margin-bottom: 0;  
+}
+
+.subItemLabel, span {  
   display: flex;
   align-items: center;
   cursor: pointer;
-  
   margin-left: 5px;
-  margin-bottom: 0;  
 }
 
 .groupObjects{
