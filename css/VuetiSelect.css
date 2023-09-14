@@ -130,7 +130,6 @@
 .itemLabel {  
   display: flex;
   align-items: center;
-  cursor: pointer;  
   margin-left: 5px;
   margin-bottom: 0;  
 }
@@ -155,7 +154,7 @@
 }
 
 .checkboxButton {
-  margin-left: 2px;
+  margin-left: 5px;
   padding: 0;
   background: none;
   border: none;

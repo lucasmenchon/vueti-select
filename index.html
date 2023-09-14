@@ -23,10 +23,23 @@
       <div class="col-md-3">
         <label for="vueti">Option</label>
 
-        <vueti-select v-model="items" :no-option-title="'No Option Selected'" :select-all-title="'Select All'"
-          :label-limit="99" :bind-options="selectedValues">
+        <vueti-select ref="VuetiSelect" :value="items"
+        :no-option-title="'No Option Selected'"
+        :select-all-title="'Select All'"
+        :label-limit="99" :bind-options="selectedValues">
         </vueti-select>
+<!--
 
+criar uma funcao para retornar os selecionados,
+refs.funcaoX ela retorna todos que tem selected true
+
+teste colocar mais de um na tela, 1 , 2 ,3 
+
+usar vue.js da vox
+
+groupBox ficar separado do row
+
+-->
       </div>
       <div class="col-md-3">
         <label for="exampleInputPassword1">Password</label>
@@ -37,9 +50,11 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+  <script src="vue.js/vue.min.js"></script>
   <script src="VuetiSelect.js"></script>
   <script>
+
     var app = new Vue({
       el: "#app",
       components: {
@@ -54,6 +69,8 @@
             displayName: "<div style='color:red;'>Clothing</div>",
             subItems: [],
             itemSelected: false,
+            expanded: false,
+            cssCheckbox: "svgArrow",
           },
           {
             id: 2,
@@ -61,11 +78,13 @@
             displayName: "tésté",
             subItems: [],
             itemSelected: false,
+            expanded: false,
+            cssCheckbox: "svgArrow",
           },
           {
             id: 3,
             name: "Food",
-            displayName: "Food",
+            displayName: "Food html",
             subItems: [
               {
                 id: 11,
@@ -78,7 +97,6 @@
                 name: "Vegetables",
                 displayName: "<div style='color:red;'>Vegetables</div",
                 subItemSelected: false,
-
               },
               {
                 id: 13,
@@ -88,6 +106,7 @@
               },
             ],
             itemSelected: false,
+            expanded: false,            
           },
           {
             id: 4,
@@ -95,6 +114,8 @@
             displayName: "Electronics",
             subItems: [],
             itemSelected: false,
+            expanded: false,
+            cssCheckbox: "svgArrow",
           },
         ],
       },

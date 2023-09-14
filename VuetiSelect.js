@@ -36,13 +36,13 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                     @change="toggleItemSelect(item)" :value="item.id" />
                   <span v-html="item.displayName"></span>
                   <button type="button" @click="toggleGroup(item)" class="checkboxButton"
-                    v-show="item.subItems.length > 0">
-                    <i :class="item.cssCheckbox"></i>
+                    v-if="item.subItems.length > 0">
+                    <i :class="item.cssCheckbox ?? 'svgArrow'"></i>
                   </button>
                 </label>
               </div>
               <transition name="fade">
-                <ul v-show="item.expanded" class="groupObjects">
+                <ul v-if="item.expanded" class="groupObjects">
                   <li v-for="subItem in item.subItems" :key="subItem.id">
                     <label class="subItemLabel">
                       <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
@@ -68,20 +68,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   },
   data() {
     return {
-      items: this.value.map((item) => ({
-        id: item.id,
-        name: item.name,
-        displayName: item.displayName,
-        subItems: item.subItems.map((subItem) => ({
-          id: subItem.id,
-          name: subItem.name,
-          displayName: subItem.displayName,
-          subItemSelected: subItem.subItemSelected,
-        })),
-        itemSelected: item.itemSelected,
-        expanded: item.expanded,
-        cssCheckbox: "svgArrow",
-      })),
+      items: this.value,
       bindItems: [],
       selectedOptions: [],
       searchTerm: "",
