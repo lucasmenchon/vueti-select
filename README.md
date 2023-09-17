@@ -22,6 +22,7 @@
 <li><code>label-limit</code> (Number): Limit the number of selected labels displayed.</li>
 </ul>
 
+<pre>
 <code>
 &lt;vueti-select
 :value="itemsToBeSelected"
@@ -30,14 +31,6 @@
 :label-limit="3"&gt;
 &lt;/vueti-select&gt;
 </code>
-
-<pre>
-  <vueti-select
-    :value="itemsToBeSelected"
-    :no-option-title="'No Option Selected'"
-    :select-all-title="'Select All'"
-    :label-limit="3"
-  ></vueti-select>
 </pre>
 
 
