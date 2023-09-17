@@ -1,4 +1,4 @@
-<h1 style="text-align: center;">Vueti Select (Multiple Select Component)</h1>
+<h2 style="text-align: center;">Vueti Select (Multiple Select Component)</h2>
 
 <p style="text-align: center;">Enhance your Vue.js application with the powerful VuetiSelect, a versatile multiple select component. This component offers advanced features for selecting multiple items.</p>
 
@@ -23,13 +23,22 @@
 </ul>
 
 <code>
-&lt;VuetiSelect
+&lt;vueti-select
 :value="itemsToBeSelected"
 :no-option-title="'No Option Selected'"
 :select-all-title="'Select All'"
-:label-limit="3"&gt;&lt;
-/VuetiSelect&gt;
+:label-limit="3"&gt;
+&lt;/vueti-select&gt;
 </code>
+
+<pre>
+  <vueti-select
+    :value="itemsToBeSelected"
+    :no-option-title="'No Option Selected'"
+    :select-all-title="'Select All'"
+    :label-limit="3"
+  ></vueti-select>
+</pre>
 
 
 <img src="https://github.com/lucasmenchon/vueti-select/blob/main/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
