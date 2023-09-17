@@ -13,7 +13,7 @@
 
 <h2 style="text-align: center;">Usage</h2>
 
-<p>o use the Vueti Select component in your Vue templates, you can pass various props to customize its behavior</p>
+<p>To use the Vueti Select component in your Vue templates, you can pass various props to customize its behavior</p>
 
 <ul>
 <li><code>value</code> (Array): An array representing the options to be selected.</li>
@@ -27,11 +27,12 @@
 :value="itemsToBeSelected"
 :no-option-title="'No Option Selected'"
 :select-all-title="'Select All'"
-:label-limit="3"
-&gt;&lt;/VuetiSelect&gt;
+:label-limit="3"&gt;&lt;
+/VuetiSelect&gt;
 </code>
 
-<img src="/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
+
+<img src="https://github.com/lucasmenchon/vueti-select/blob/main/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
 
 <h2 style="text-align: center;">Contributing</h2>
 
