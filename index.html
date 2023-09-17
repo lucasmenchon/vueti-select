@@ -11,7 +11,6 @@
 </head>
 
 <body style="background-color: #eaeaea;">
-
   <div id="app">
     <div class="row" style="margin-top: 200px;">
       <div class="col-md-3">
@@ -23,23 +22,20 @@
       <div class="col-md-3">
         <label for="vueti">Option</label>
 
-        <vueti-select ref="VuetiSelect" :value="items"
+        <vueti-select ref="VuetiSelect"
+        :value="items"
         :no-option-title="'No Option Selected'"
         :select-all-title="'Select All'"
-        :label-limit="99" :bind-options="selectedValues">
+        :label-limit="3">
         </vueti-select>
-<!--
 
-criar uma funcao para retornar os selecionados,
-refs.funcaoX ela retorna todos que tem selected true
+        <vueti-select-test ref="VuetiSelectTeste"
+        :value="itemsTest"
+        :no-option-title="'No Option Selected'"
+        :select-all-title="'Select All'"
+        :label-limit="3">
+        </vueti-select-test>
 
-teste colocar mais de um na tela, 1 , 2 ,3 
-
-usar vue.js da vox
-
-groupBox ficar separado do row
-
--->
       </div>
       <div class="col-md-3">
         <label for="exampleInputPassword1">Password</label>
@@ -58,10 +54,67 @@ groupBox ficar separado do row
     var app = new Vue({
       el: "#app",
       components: {
-        'vueti-select': VuetiSelect
+        'vueti-select': VuetiSelect,
+        'vueti-select-test': VuetiSelect
       },
       data: {
         selectedValues: [],
+        itemsTest: [
+          {
+            id: 1,
+            name: "Clothing",
+            displayName: "<div style='color:red;'>Clothing</div>",
+            subItems: [],
+            itemSelected: false,
+            expanded: false,
+            cssCheckbox: "svgArrow",
+          },
+          {
+            id: 2,
+            name: "tést",
+            displayName: "tésté",
+            subItems: [],
+            itemSelected: false,
+            expanded: false,
+            cssCheckbox: "svgArrow",
+          },
+          {
+            id: 3,
+            name: "Food",
+            displayName: "Food html",
+            subItems: [
+              {
+                id: 11,
+                name: "Fruits",
+                displayName: "<div style='color:green;'>Fruits</div",
+                subItemSelected: false,
+              },
+              {
+                id: 12,
+                name: "Vegetables",
+                displayName: "<div style='color:red;'>Vegetables</div",
+                subItemSelected: false,
+              },
+              {
+                id: 13,
+                name: "Meat",
+                displayName: "<div style='color:red;'>Meat</div",
+                subItemSelected: false,
+              },
+            ],
+            itemSelected: false,
+            expanded: false,
+          },
+          {
+            id: 4,
+            name: "Electronics",
+            displayName: "Electronics",
+            subItems: [],
+            itemSelected: false,
+            expanded: false,
+            cssCheckbox: "svgArrow",
+          },
+        ],
         items: [
           {
             id: 1,
@@ -106,7 +159,7 @@ groupBox ficar separado do row
               },
             ],
             itemSelected: false,
-            expanded: false,            
+            expanded: true,
           },
           {
             id: 4,
