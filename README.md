@@ -33,6 +33,14 @@
 </code>
 </pre>
 
+<pre>
+<vueti-select
+:value="itemsToBeSelected"
+:no-option-title="'No Option Selected'"
+:select-all-title="'Select All'"
+:label-limit="3">
+</vueti-select>
+</pre>
 
 <img src="https://github.com/lucasmenchon/vueti-select/blob/main/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
 
