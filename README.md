@@ -11,9 +11,39 @@
   <li><strong>Grouping:</strong> Organize items into logical groups.</li>
 </ul>
 
+<h2 style="text-align: center;">Installation</h2>
+<p>To use Vueti Select in your Vue.js project, follow these steps:</p>
+<ol>
+<li>Install the package via npm:</li>
+</ol>
+<pre>
+<code>npm install vueti-select</code>
+</pre>
+<ol start="2">
+<li>Import and register the component in your Vue app:</li>
+</ol>
+<pre>
+<code>
+import Vue from 'vue';
+import VuetiSelect from 'vueti-select';
+Vue.component('VuetiSelect', VuetiSelect);
+</code>
+</pre>
+
+<ol start="3">
+<li>Now you can use the <code>VuetiSelect</code> component in your Vue templates.</li>
+</ol>
+
 <h2 style="text-align: center;">Usage</h2>
 
-<p>To use the Vueti Select component in your Vue templates, you can pass various props to customize its behavior</p>
+<p>To use the Vueti Select component in your Vue models, you can pass various accessories to customize its behavior, see example in html.</p>
+
+<pre><code>&lt;vueti-select
+:value="itemsToBeSelected"
+:no-option-title="'No Option Selected'"
+:select-all-title="'Select All'"
+:label-limit="3"&gt;
+&lt;/vueti-select&gt;</code></pre>
 
 <ul>
 <li><code>value</code> (Array): An array representing the options to be selected.</li>
@@ -22,18 +52,7 @@
 <li><code>label-limit</code> (Number): Limit the number of selected labels displayed.</li>
 </ul>
 
-<pre>
-<code>
-&lt;vueti-select
-:value="itemsToBeSelected"
-:no-option-title="'No Option Selected'"
-:select-all-title="'Select All'"
-:label-limit="3"&gt;
-&lt;/vueti-select&gt;
-</code>
-</pre>
-
-<img src="https://github.com/lucasmenchon/vueti-select/blob/main/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
+<img src="https://github.com/lucasmenchon/vueti-select/blob/vueti-deploy/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
 
 <h2 style="text-align: center;">Contributing</h2>
 
