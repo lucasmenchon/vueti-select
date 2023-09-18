@@ -52,7 +52,7 @@ Vue.component('VuetiSelect', VuetiSelect);
 <li><code>label-limit</code> (Number): Limit the number of selected labels displayed.</li>
 </ul>
 
-<img src="https://github.com/lucasmenchon/vueti-select/blob/main/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
+<img src="https://github.com/lucasmenchon/vueti-select/blob/vueti-deploy/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
 
 <h2 style="text-align: center;">Contributing</h2>
 
