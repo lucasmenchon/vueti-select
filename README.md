@@ -63,7 +63,7 @@ Vue.component('vueti-select', VuetiSelect);
 <p>You need to pass an array of "items" which are the objects that will be selected,
 these objects can have an array of "subItems",
 subItems are the "children" of an item.</p>
-<code><p>note: An item is only selected when it has no "subItems".</p></code>
+<p>note: An item is only selected when it has no "subItems".</p>
 
 <p>Each item must have the following properties:</p>
 
