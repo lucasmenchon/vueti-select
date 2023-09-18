@@ -13,7 +13,7 @@
 
 <h2 style="text-align: center;">Installation</h2>
 <p>To use Vueti Select in your Vue.js project, follow these steps:</p>
-<p>Import our .css file into your template, it is located in the assets folder.</p>
+<p>Import our .css file into your template, it is located in the assets folder and using vue.js 2.</p>
 <p>Install the package</p>
 <ol>
 <li>Download the component, import it into your html:</li>
@@ -32,7 +32,6 @@
 </ol>
 <pre>
 <code>
-import Vue from 'vue';
 import VuetiSelect from 'vueti-select';
 Vue.component('vueti-select', VuetiSelect);
 </code>
@@ -89,25 +88,55 @@ subItems are the "children" of an item.</p>
 
 <pre><code>
 items: [
-{
-  id: 1,
-  name: "Food",
-  displayName: "<b style='color: red;'>Food with html</b>",
-  itemSelected: false,
-  expanded: false,
-  subItems: [
-      {
-        id: 1,
-        name: "Meat",
-        displayName: "<b style='color: red;'>Meat with html</b>",
-        subItemSelected: false,
-      }
-  ]
-}
-]
+          {
+            id: 1,
+            name: "Clothing",
+            displayName: "<b style='color:red;'>Clothing with html</b>",
+            itemSelected: false,
+            expanded: false,
+            subItems: [],
+          },
+          {
+            id: 3,
+            name: "Food",
+            displayName: "<b style='color: blue;'>Food with html</b>",
+            itemSelected: false,
+            expanded: false,
+            subItems: [
+              {
+                id: 11,
+                name: "Fruits",
+                displayName: "<b style='color:green;'>Fruits</b>",
+                subItemSelected: false,
+              },
+              {
+                id: 12,
+                name: "Vegetables",
+                displayName: "<b style='color:red;'>Vegetables</b>",
+                subItemSelected: false,
+              },
+              {
+                id: 13,
+                name: "Meat",
+                displayName: "<b style='color:red;'>Meat with html</b>",
+                subItemSelected: false,
+              },
+            ],
+          },
+        ]
 </code></pre>
 
 <img src="https://github.com/lucasmenchon/vueti-select/blob/vueti-deploy/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
+
+<h2 style="text-align: center;">Get Selected Options</h2>
+
+<p>To get the selected items or subitems, simply call the getSelectedOptions method of your component instance from your Vue application instance using $refs and pass your list of items as a parameter, for example:</p>
+
+<pre>
+<code>vueInstance.$refs.VuetiSelect.getSelectedOptions(vueInstance.items)</code>
+</pre>
+
+<p>note: Only the "ID" of each object is returned in the getSelectedOptions method.</p>
 
 <h2 style="text-align: center;">Contributing</h2>
 
