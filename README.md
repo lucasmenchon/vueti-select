@@ -13,6 +13,7 @@
 
 <h2 style="text-align: center;">Installation</h2>
 <p>To use Vueti Select in your Vue.js project, follow these steps:</p>
+<p>Import our .css file into your template, it is located in the assets folder.</p>
 <p>Install the package</p>
 <ol>
 <li>Download the component, import it into your html:</li>
