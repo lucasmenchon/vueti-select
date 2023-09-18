@@ -157,11 +157,13 @@ var VuetiSelect = Vue.component("VuetiSelect", {
           const selectedSubItemsInGroup = item.subItems.filter(
             (subItem) => subItem.subItemSelected
           );
-          if (selectedSubItemsInGroup.length > 0) {
-            selectedOptions.push(...selectedSubItemsInGroup);
+          if (selectedSubItemsInGroup.length > 0) {            
+            const subItemIds = selectedSubItemsInGroup.map((subItem) => subItem.id);            
+            selectedOptions.push(...subItemIds);
           }
-        } else if (item.itemSelected) {
-          selectedOptions.push(item);
+        }
+        else if (item.itemSelected) {
+          selectedOptions.push(item.id);
         }
       });
 
