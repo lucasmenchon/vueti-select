@@ -35,7 +35,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                       @change="toggleItemSelect(item)" :value="item.id" />
                     <span v-html="item.displayName"></span>
                     <button type="button" @click="toggleGroup(item)" class="checkboxButton"
-                      v-if="item.subItems.length > 0">
+                      v-if="item.subItems && item.subItems.length > 0">
                       <i :class="item.expanded ? 'svgArrow open' : 'svgArrow'"></i>
                     </button>
                   </label>
@@ -47,7 +47,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                         <label class="subItemLabel">
                           <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
                             @change="toggleSingleSubItem(item)" />
-                          <span v-html="subItem.displayName"></span>
+                          <span v-html="subItem.displayName" style="display: flex;align-items: center;cursor: pointer;margin-left: 5px;"></span>
                         </label>
                       </div>
                     </li>
@@ -86,7 +86,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   computed: {
     filteredItems() {
       if (this.searchTerm == "") {
-        return this.items;
+        return this.value;
       }
       const normalizedSearchTerm = this.normalizeText(this.searchTerm);
       const matchingItems = this.items.filter((item) => {
