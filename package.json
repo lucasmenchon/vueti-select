@@ -1,6 +1,6 @@
 {
   "name": "vueti-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vueti Select (Multiple Select Component)",
   "main": "VuetiSelect.js",
   "scripts": {
