@@ -146,13 +146,6 @@
     margin-left: 5px;
 }
 
-#subItemLabelSpan {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin-left: 5px;
-}
-
 .subItemsMenu {
     list-style-type: none;
     padding-left: 20px;

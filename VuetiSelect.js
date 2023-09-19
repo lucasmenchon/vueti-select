@@ -47,7 +47,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                         <label class="subItemLabel">
                           <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
                             @change="toggleSingleSubItem(item)" />
-                          <span v-html="subItem.displayName" style="display: flex;align-items: center;cursor: pointer;margin-left: 5px;"></span>
+                          <span v-html="subItem.displayName"></span>
                         </label>
                       </div>
                     </li>
