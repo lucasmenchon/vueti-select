@@ -97,6 +97,7 @@
 .searchBar {
   width: 100%;
   border: 1px solid #cccccc;
+  background-color: #F8F9FA;
   border-top: none;
   padding: 4px 6px;
   box-shadow: none;
@@ -106,6 +107,7 @@
 .itemsBox {
   overflow-y: auto;
   max-height: 300px;
+  background-color: #F8F9FA;
   border: 1px solid #cccccc;
   border-top: none;
   user-select: none;
@@ -140,9 +142,14 @@ display: inline-block;
   /*margin-bottom: 5px;*/
 }
 
-.subItemLabel, span {  
+.subItemLabel {  
   display: flex;
-  align-items: center;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.displayNames {  
+  display: flex;
   cursor: pointer;
   margin-left: 5px;
 }
