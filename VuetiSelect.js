@@ -33,7 +33,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                   <label class="itemLabel">
                     <input type="checkbox" id="noMargin" class="groupCheckbox" v-model="item.itemSelected"
                       @change="toggleItemSelect(item)" :value="item.id" />
-                    <span v-html="item.displayName"></span>
+                    <span class="displayNames" v-html="item.displayName"></span>
                     <button type="button" @click="toggleGroup(item)" class="checkboxButton"
                       v-if="item.subItems && item.subItems.length > 0">
                       <i :class="item.expanded ? 'svgArrow open' : 'svgArrow'"></i>
@@ -47,7 +47,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                         <label class="subItemLabel">
                           <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
                             @change="toggleSingleSubItem(item)" />
-                          <span v-html="subItem.displayName"></span>
+                          <span class="displayNames" v-html="subItem.displayName"></span>
                         </label>
                       </div>
                     </li>
@@ -85,19 +85,18 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   },
   computed: {
     filteredItems() {
-      if (this.searchTerm == "") {
+      if (this.searchTerm === "") {
         return this.value;
       }
       const normalizedSearchTerm = this.normalizeText(this.searchTerm);
       const matchingItems = this.items.filter((item) => {
         const normalizedItemName = this.normalizeText(item.name);
-        const itemNameMatches =
-          normalizedItemName.includes(normalizedSearchTerm);
+        const itemNameMatches = normalizedItemName.includes(normalizedSearchTerm);
         const matchingSubItems = item.subItems.filter((subItem) => {
           const normalizedSubItemName = this.normalizeText(subItem.name);
-          return normalizedSubItemName.includes(normalizedSearchTerm);          
+          return normalizedSubItemName.startsWith(normalizedSearchTerm);
         });
-        if (matchingSubItems.length > 0) {
+        if (itemNameMatches || matchingSubItems.length > 0) {
           item.expanded = true;
         }
         return itemNameMatches || matchingSubItems.length > 0;
@@ -157,12 +156,13 @@ var VuetiSelect = Vue.component("VuetiSelect", {
           const selectedSubItemsInGroup = item.subItems.filter(
             (subItem) => subItem.subItemSelected
           );
-          if (selectedSubItemsInGroup.length > 0) {            
-            const subItemIds = selectedSubItemsInGroup.map((subItem) => subItem.id);            
+          if (selectedSubItemsInGroup.length > 0) {
+            const subItemIds = selectedSubItemsInGroup.map(
+              (subItem) => subItem.id
+            );
             selectedOptions.push(...subItemIds);
           }
-        }
-        else if (item.itemSelected) {
+        } else if (item.itemSelected) {
           selectedOptions.push(item.id);
         }
       });
