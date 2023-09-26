@@ -24,7 +24,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
               <label class="labelSelectAll">
                 <input type="checkbox" id="noMargin" class="inputSelectAll" @change="toggleSelectAll"
                   v-model="selectedAll" />
-                {{ selectAllTitle }}
+                {{ allSelectedText }}
               </label>
             </div>
             <ul class="itemsMenu">
@@ -63,8 +63,8 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   `,
     props: {
         value: Array,
-        noOptionTitle: String,
-        selectAllTitle: String,
+        noSelectedText: String,
+        allSelectedText: String,
         noValueFound: String,
         labelLimit: Number,
     },
@@ -124,7 +124,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         },
         selectedOptionsText() {
             if (this.selectedOptions.length === 0) {
-                return this.noOptionTitle;
+                return this.noSelectedText;
             } else if (this.selectedOptions.length <= this.labelLimit) {
                 return this.selectedOptions.map((item) => item.name).join(", ");
             } else {
@@ -155,9 +155,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         },
     },
     methods: {
-        getSelectedOptions(options) {
+        getSelectedOptionsIds() {
             const selectedOptions = [];
-            options.forEach((item) => {
+            this.value.forEach((item) => {
                 if (item.subItems && item.subItems.length > 0) {
                     const selectedSubItemsInGroup = item.subItems.filter(
                         (subItem) => subItem.subItemSelected
