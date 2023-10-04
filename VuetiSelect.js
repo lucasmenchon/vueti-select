@@ -4,7 +4,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     <div class="dropdownContainer">
       <div class="buttonBox">
         <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
-          <span>{{ value.length > 0 ? selectedOptionsText : noValueFound }}</span>
+          <span>{{ value.length > 0 ? selectedOptionsText : noValueText }}</span>
           <i :class="value.length > 0 ? cssBtnBox.icon : ''"></i>
         </button>
       </div>
@@ -14,7 +14,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
             <div class="svgSearchBox">
               <i class="svgSearch"></i>
             </div>
-            <input type="text" v-model="searchTerm" placeholder="Search" class="searchBar" />
+            <input type="text" v-model="searchTerm" :placeholder="searchText" class="searchBar" />
             <button class="btnClear" type="button" @click="clearSearch">
               <i class="svgEraser"></i>
             </button>
@@ -24,8 +24,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
               <label class="labelSelectAll">
                 <input type="checkbox" id="noMargin" class="inputSelectAll" @change="toggleSelectAll"
                   v-model="selectedAll" />
-                {{ allSelectedText }}
+                <span class="selectAllText">{{ allSelectedText }}</span>
               </label>
+              <label class="valueCountText">{{countValueText}} {{ value.length }}</label>
             </div>
             <ul class="itemsMenu">
               <li v-for="item in filteredItems" :key="item.id" class="itemGroup">
@@ -63,10 +64,12 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   `,
     props: {
         value: Array,
+        countValueText: String,
+        noValueText: String,
         noSelectedText: String,
-        allSelectedText: String,
-        noValueFound: String,
+        allSelectedText: String,                
         labelLimit: Number,
+        searchText: String,
     },
     data() {
         return {

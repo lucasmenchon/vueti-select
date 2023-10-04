@@ -158,11 +158,27 @@
     padding-left: 20px;
 }
 
-.boxSelectAll .labelSelectAll, .inputSelectAll {
-    cursor: pointer;
+.boxSelectAll {
+    display: flex;
+    justify-content: space-between;
     margin-left: 10px;
+    margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.selectAllText {
+    margin-left: 5px;
+}
+
+.valueCountText {
+    margin-bottom: 0;
+}
+
+.labelSelectAll, .inputSelectAll {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 0;
 }
 
 .checkboxButton {
