@@ -1,15 +1,15 @@
-var VuetiSelect = Vue.component("VuetiSelect", {
+var VuetiSelect = Vue.component(VuetiSelect, {
     template: `
     <div id="VuetiSelect" class="vuetiSelectBox">
     <div class="dropdownContainer">
       <div class="buttonBox">
         <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
-          <span>{{ value.length > 0 ? selectedOptionsText : noValueText }}</span>
-          <i :class="value.length > 0 ? cssBtnBox.icon : ''"></i>
+          <span>{{ items.length > 0 ? selectedOptionsText : notFoundText }}</span>
+          <i :class="items.length > 0 ? cssBtnBox.icon : ''"></i>
         </button>
       </div>
       <transition name="fade">
-        <div v-if="showDropdownMenu && value.length > 0" :class="cssDropdownMenu">
+        <div v-if="showDropdownMenu && items.length > 0" :class="cssDropdownMenu">
           <div class="searchBox">
             <div class="svgSearchBox">
               <i class="svgSearch"></i>
@@ -26,14 +26,14 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                   v-model="selectedAll" />
                 <span class="selectAllText">{{ allSelectedText }}</span>
               </label>
-              <label class="valueCountText">{{countValueText}} {{ value.length }}</label>
+              <label class="valueCountText">{{totalValueText}} {{ filteredItems.length }}</label>
             </div>
             <ul class="itemsMenu">
               <li v-for="item in filteredItems" :key="item.id" class="itemGroup">
                 <div class="itemBox">
                   <label class="itemLabel">
                     <input type="checkbox" id="noMargin" class="groupCheckbox" v-model="item.itemSelected"
-                      @change="toggleItemSelect(item)" :value="item.id" />
+                      @change="toggleItemSelect(item)" :items="item.id" />
                     <span class="displayNames" v-html="item.displayName"></span>
                     <button type="button" @click="toggleGroup(item)" class="checkboxButton"
                       v-if="item.subItems && item.subItems.length > 0">
@@ -46,7 +46,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                     <li v-for="subItem in item.subItems" :key="subItem.id">
                       <div class="subItemBox">
                         <label class="subItemLabel">
-                          <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
+                          <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :items="subItem.id"
                             @change="toggleSingleSubItem(item)" />
                           <span class="displayNames" v-html="subItem.displayName"></span>
                         </label>
@@ -63,17 +63,37 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   </div>
   `,
     props: {
-        value: Array,
-        countValueText: String,
-        noValueText: String,
-        noSelectedText: String,
-        allSelectedText: String,                
-        labelLimit: Number,
-        searchText: String,
+        items: {
+            type: Array,
+            default: [],
+        },
+        totalValueText: {
+            type: String,
+            default: "Total de registros:",
+        },
+        notFoundText: {
+            type: String,
+            default: "Nenhum registro encontrado.",
+        },
+        noSelectedText: {
+            type: String,
+            default: "Todos registros",
+        },
+        allSelectedText: {
+            type: String,
+            default: "Selecionar todos",
+        },
+        searchText: {
+            type: String,
+            default: "Pesquisar...",
+        },
+        labelLimit: {
+            type: Number,
+            default: 1,
+        },
     },
     data() {
         return {
-            items: [],
             selectedOptions: [],
             searchTerm: "",
             showDropdownMenu: false,
@@ -90,10 +110,10 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     computed: {
         filteredItems() {
             if (this.searchTerm === "") {
-                return this.value;
+                return this.items;
             }
             const normalizedSearchTerm = this.normalizeText(this.searchTerm);
-            const matchingItems = this.value.filter((item) => {
+            const matchingItems = this.items.filter((item) => {
                 const normalizedItemName = this.normalizeText(item.name);
                 const itemNameMatches = normalizedItemName.includes(normalizedSearchTerm);
 
@@ -115,7 +135,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         },
         allSelected() {
             const explicitSelection = this.selectedAll;
-            const automaticSelection = this.value.every((item) => {
+            const automaticSelection = this.items.every((item) => {
                 const itemSelected = item.itemSelected;
                 const subItemsSelected =
                     !item.subItems ||
@@ -142,9 +162,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         },
     },
     watch: {
-        value: {
+        items: {
             handler() {
-                const selectAll = this.value.every((item) => {
+                const selectAll = this.items.every((item) => {
                     const itemSelected = item.itemSelected;
                     const subItemsSelected =
                         !item.subItems ||
@@ -160,7 +180,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     methods: {
         getSelectedOptionsIds() {
             const selectedOptions = [];
-            this.value.forEach((item) => {
+            this.items.forEach((item) => {
                 if (item.subItems && item.subItems.length > 0) {
                     const selectedSubItemsInGroup = item.subItems.filter(
                         (subItem) => subItem.subItemSelected
@@ -180,7 +200,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
         },
         toggleSelectAll() {
             if (this.selectedAll) {
-                this.value.forEach((item) => {
+                this.items.forEach((item) => {
                     item.itemSelected = true;
                     if (item.subItems) {
                         item.subItems.forEach((subItem) => {
@@ -189,7 +209,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
                     }
                 });
             } else {
-                this.value.forEach((item) => {
+                this.items.forEach((item) => {
                     item.itemSelected = false;
                     if (item.subItems) {
                         item.subItems.forEach((subItem) => {
@@ -245,7 +265,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
             }
         },
         updateSelectedOptions() {
-            this.selectedOptions = this.value.flatMap((item) => {
+            this.selectedOptions = this.items.flatMap((item) => {
                 if (!item.subItems || item.subItems.length === 0) {
                     return item.itemSelected ? [item] : [];
                 } else {
