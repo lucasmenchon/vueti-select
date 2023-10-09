@@ -1,4 +1,4 @@
-var VuetiSelect = Vue.component(VuetiSelect, {
+var VuetiSelect = Vue.component('VuetiSelect', {
     template: `
     <div id="VuetiSelect" class="vuetiSelectBox">
     <div class="dropdownContainer">
@@ -81,7 +81,7 @@ var VuetiSelect = Vue.component(VuetiSelect, {
         },
         allSelectedText: {
             type: String,
-            default: "Selecionar todos",
+            default: "Selecionar tudo",
         },
         searchText: {
             type: String,
