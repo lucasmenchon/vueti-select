@@ -31,7 +31,7 @@
 .svgCaretDown {
     width: 16px;
     height: 16px;
-    background: url('../icons/caretDownIcon.svg') no-repeat center / contain;
+    background: url('/assets/css/VuetiSelect.css') no-repeat center / contain; /* ../icons/caretDownIcon.svg */
     display: inline-block;
     transition: transform 0.3s ease;
     filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
@@ -49,7 +49,7 @@
     width: 16px;
     height: 14px;
     display: inline-block;
-    background: url('../icons/eraserIcon.svg') no-repeat center / contain;
+    background: url('/assets/icons/eraserIcon.svg') no-repeat center / contain;
     line-height: 16px;
     filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
@@ -67,7 +67,7 @@
 }
 
 .svgSearch {
-    background: url('../icons/searchIcon.svg') no-repeat center / contain;
+    background: url('/assets/icons/searchIcon.svg') no-repeat center / contain;
     width: 14px;
     height: 16px;
     display: inline-block;
@@ -199,7 +199,7 @@
 .svgArrow {
     width: 12px;
     height: 12px;
-    background: url('../icons/arrowIcon.svg') no-repeat center / contain;
+    background: url('/assets/icons/arrowIcon.svg') no-repeat center / contain;
     transition: transform 0.3s ease;
     filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
 }
