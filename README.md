@@ -18,9 +18,7 @@
 <ol>
 <li>Download the component, import it into your html:</li>
 </ol>
-<pre>
-<code>&lt;script src="VuetiSelect.js">&lt;/script></code>
-</pre>
+<pre><code>&lt;script src="VuetiSelect.js">&lt;/script></code></pre>
 <ol start="2">
 <li>Via npm:</li>
 </ol>
@@ -46,12 +44,7 @@ Vue.component('vueti-select', VuetiSelect);</code></pre>
 <p>To use the Vueti Select component in your Vue models, you can pass various accessories to customize its behavior, see example in html.</p>
 <p>All props, except items, already have a default value and are not required, but prop items are required.</p>
 
-<pre><code>&lt;vueti-select
-:items="itemsToBeSelected"
-no-option-title="No Option Selected"
-select-all-title="Select All"
-label-limit="3"&gt;
-&lt;/vueti-select&gt;</code></pre>
+<pre><code>&lt;vueti-select ref="VuetiSelect" :items="itemsToBeSelected"&gt;&lt;/vueti-select&gt;</code></pre>
 
 <ul>
 <li><code>items</code> (Array - required): An array representing the options to be selected. <code>Default value: []</code></li>
