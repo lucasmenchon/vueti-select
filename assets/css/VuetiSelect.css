@@ -31,7 +31,7 @@
 .svgCaretDown {
     width: 16px;
     height: 16px;
-    background: url('/assets/icons/caretDownIcon.svg') no-repeat center / contain; /* ../icons/caretDownIcon.svg */
+    background: url('assets/icons/caretDownIcon.svg') no-repeat center / contain; /* ../icons/caretDownIcon.svg */
     display: inline-block;
     transition: transform 0.3s ease;
     filter: invert(48%) sepia(11%) saturate(247%) hue-rotate(86deg) brightness(88%) contrast(19%);
