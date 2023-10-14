@@ -18,24 +18,22 @@
 <ol>
 <li>Download the component, import it into your html:</li>
 </ol>
-<pre>
-<code>&lt;script src="VuetiSelect.js">&lt;/script></code>
-</pre>
+<pre><code>&lt;script src="VuetiSelect.js">&lt;/script></code></pre>
 <ol start="2">
 <li>Via npm:</li>
 </ol>
-<pre>
-<code>npm install vueti-select</code>
-</pre>
+<pre><code>npm install vueti-select</code></pre>
 <ol start="3">
 <li>Import and register the component in your Vue app:</li>
 </ol>
-<pre>
-<code>
-import VuetiSelect from 'vueti-select';
-Vue.component('vueti-select', VuetiSelect);
-</code>
-</pre>
+<pre><code>import VuetiSelect from 'vueti-select';
+Vue.component('vueti-select', VuetiSelect);</code></pre>
+<pre><code>var app = new Vue({
+      el: "#app",
+      components: {
+        'vueti-select': VuetiSelect,       
+      },
+});</code></pre>
 
 <ol start="4">
 <li>Now you can use the <code>VuetiSelect</code> component in your Vue templates.</li>
@@ -44,19 +42,18 @@ Vue.component('vueti-select', VuetiSelect);
 <h2 style="text-align: center;">Usage</h2>
 
 <p>To use the Vueti Select component in your Vue models, you can pass various accessories to customize its behavior, see example in html.</p>
+<p>All props, except items, already have a default value and are not required, but prop items are required.</p>
 
-<pre><code>&lt;vueti-select
-:value="itemsToBeSelected"
-:no-option-title="'No Option Selected'"
-:select-all-title="'Select All'"
-:label-limit="3"&gt;
-&lt;/vueti-select&gt;</code></pre>
+<pre><code>&lt;vueti-select ref="VuetiSelect" :items="itemsToBeSelected"&gt;&lt;/vueti-select&gt;</code></pre>
 
 <ul>
-<li><code>value</code> (Array): An array representing the options to be selected.</li>
-<li><code>no-option-title</code> (String): Text to display when no option is selected.</li>
-<li><code>select-all-title</code> (String): Text for the "Button to select all".</li>
-<li><code>label-limit</code> (Number): Limit the number of selected labels displayed.</li>
+<li><code>items</code> (Array - required): An array representing the options to be selected. <code>Default value: []</code></li>
+<li><code>total-items-text</code> (String - not required): Text to display the total data listed. <code>Default value: 'Total:'</code></li>
+<li><code>not-found-text</code> (String - not required): Text to display when there is no data found. <code>Default value: 'No data found.'</code></li>
+<li><code>no-selected-text</code> (String - not required): Text to display when nothing is selected. <code>Default value: 'All items'</code></li>
+<li><code>select-all-text</code> (String - not required): Text to display on the select all button. <code>Default value: 'Select all'</code></li>
+<li><code>search-text</code> (String - not required): Text to display in the search bar. <code>Default value: 'Search...'</code></li>
+<li><code>label-limit</code> (Number - not required): Limit the number of selected labels displayed. <code>Default value: 1</code></li>
 </ul>
 
 <p>You need to pass an array of "items" which are the objects that will be selected,
@@ -70,8 +67,7 @@ subItems are the "children" of an item.</p>
   <li><strong>id: </strong>Unique identifier for your object.</li>
   <li><strong>name: </strong>The name of your object to appear in the label when it is selected.</li>
   <li><strong>displayName: </strong>The name of your object to appear in the selection menu, it can be customized with html.</li>
-  <li><strong>itemSelected: </strong>Bool property of the item, whether selected or not, true or false.</li>
-  <li><strong>expanded: </strong>Bool property of the item to expand it if it has subItems, when there are subItems it shows the cursor icon to expand.</li>
+  <li><strong>expanded: </strong>Bool property of the item to expand it if it has subItems, when there are subItems it shows the cursor icon to expand. (required only if it has subItems)</li>
   <li><strong>subItems: </strong>Array with the list of children if the parent object "item" has.</li>
 </ul>
 
@@ -81,50 +77,50 @@ subItems are the "children" of an item.</p>
   <li><strong>id: </strong>Unique identifier for your object.</li>
   <li><strong>name: </strong>The name of your object to appear in the label when it is selected.</li>
   <li><strong>displayName: </strong>The name of your object to appear in the selection menu, it can be customized with html.</li>
-  <li><strong>subItemSelected: </strong>Bool property of the item, whether selected or not, true or false.</li>
 </ul>
 
 <p>Example:</p>
 
-<pre><code>
-items: [
+<pre><code>items: [
           {
             id: 1,
             name: "Clothing",
-            displayName: "<b style='color:red;'>Clothing with html</b>",
-            itemSelected: false,
-            expanded: false,
-            subItems: [],
+            displayName: "&lt;div style='color:gray;'>Clothing with html&lt;/div>",
+          },
+          {
+            id: 2,
+            name: "tést",
+            displayName: "tést",
           },
           {
             id: 3,
             name: "Food",
-            displayName: "<b style='color: blue;'>Food with html</b>",
-            itemSelected: false,
+            displayName: "Food html",
             expanded: false,
             subItems: [
               {
                 id: 11,
                 name: "Fruits",
-                displayName: "<b style='color:green;'>Fruits</b>",
-                subItemSelected: false,
+                displayName: "&lt;div style='color:green;'>Fruits&lt;/div>",                
               },
               {
                 id: 12,
                 name: "Vegetables",
-                displayName: "<b style='color:red;'>Vegetables</b>",
-                subItemSelected: false,
+                displayName: "&lt;div style='color:red;'>Vegetables&lt;/div>",                
               },
               {
                 id: 13,
                 name: "Meat",
-                displayName: "<b style='color:red;'>Meat with html</b>",
-                subItemSelected: false,
+                displayName: "&lt;div style='color:blue;'>Meat&lt;/div>",
               },
-            ],
+            ]
           },
-        ]
-</code></pre>
+          {
+            id: 4,
+            name: "Electronics",
+            displayName: "Electronics",
+          },
+        ],</code></pre>
 
 <img src="https://github.com/lucasmenchon/vueti-select/blob/vueti-deploy/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
 
@@ -132,9 +128,7 @@ items: [
 
 <p>To get the selected items or subitems, simply call the getSelectedOptions method of your component instance from your Vue application instance using $refs and pass your list of items as a parameter, for example:</p>
 
-<pre>
-<code>vueInstance.$refs.VuetiSelect.getSelectedOptions(vueInstance.items)</code>
-</pre>
+<pre><code>vueInstance.$refs.VuetiSelect.getSelectedOptions(vueInstance.items)</code></pre>
 
 <p>note: Only the "ID" of each object is returned in the getSelectedOptions method.</p>
 

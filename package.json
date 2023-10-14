@@ -1,6 +1,6 @@
 {
   "name": "vueti-select",
-  "version": "1.0.2",
+  "version": "0.1.0",
   "description": "Vueti Select (Multiple Select Component)",
   "main": "VuetiSelect.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/lucasmenchon/vueti-select.git"
   },
-  "author": "Lucas Menchon - www.luccas.dev",
+  "author": "Lucas Menchon - luccas.dev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lucasmenchon/vueti-select/issues"

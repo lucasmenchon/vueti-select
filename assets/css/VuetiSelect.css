@@ -130,6 +130,7 @@
 }
 
 .itemLabel {
+    cursor: pointer;
     display: flex;
     align-items: center;
     margin-left: 5px;
@@ -175,13 +176,17 @@
     margin-bottom: 0;
 }
 
+.groupCheckbox{
+    cursor: pointer;
+}
+
 .labelSelectAll, .inputSelectAll {
     display: flex;
     cursor: pointer;
     margin-bottom: 0;
 }
 
-.checkboxButton {
+.toggleGroup {
     margin-left: 5px;
     padding: 0;
     background: none;
