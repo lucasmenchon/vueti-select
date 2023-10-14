@@ -24,28 +24,18 @@
 <ol start="2">
 <li>Via npm:</li>
 </ol>
-<pre>
-<code>npm install vueti-select</code>
-</pre>
+<pre><code>npm install vueti-select</code></pre>
 <ol start="3">
 <li>Import and register the component in your Vue app:</li>
 </ol>
-<pre>
-<code>
-import VuetiSelect from 'vueti-select';
-Vue.component('vueti-select', VuetiSelect);
-</code>
-</pre>
-<pre>
-<code>
-var app = new Vue({
+<pre><code>import VuetiSelect from 'vueti-select';
+Vue.component('vueti-select', VuetiSelect);</code></pre>
+<pre><code>var app = new Vue({
       el: "#app",
       components: {
         'vueti-select': VuetiSelect,       
       },
-});
-</code>
-</pre>
+});</code></pre>
 
 <ol start="4">
 <li>Now you can use the <code>VuetiSelect</code> component in your Vue templates.</li>
@@ -98,8 +88,7 @@ subItems are the "children" of an item.</p>
 
 <p>Example:</p>
 
-<pre><code>
-items: [
+<pre><code>items: [
           {
             id: 1,
             name: "Clothing",
@@ -140,8 +129,7 @@ items: [
             name: "Electronics",
             displayName: "Electronics",
           },
-        ],
-</code></pre>
+        ],</code></pre>
 
 <img src="https://github.com/lucasmenchon/vueti-select/blob/vueti-deploy/imgs/componentImg.png" alt="Vueti Select Image 1" style="display: block; margin: 0 auto;">
 
@@ -149,9 +137,7 @@ items: [
 
 <p>To get the selected items or subitems, simply call the getSelectedOptions method of your component instance from your Vue application instance using $refs and pass your list of items as a parameter, for example:</p>
 
-<pre>
-<code>vueInstance.$refs.VuetiSelect.getSelectedOptions(vueInstance.items)</code>
-</pre>
+<pre><code>vueInstance.$refs.VuetiSelect.getSelectedOptions(vueInstance.items)</code></pre>
 
 <p>note: Only the "ID" of each object is returned in the getSelectedOptions method.</p>
 
