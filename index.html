@@ -13,40 +13,19 @@
 <body style="background-color: #eaeaea;">
   <div id="app">
     <div class="row" style="margin-top: 200px;">
+      <div class="col-md-3"></div>
       <div class="col-md-3">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <label for="vueti">Option 1</label>
+        <vueti-select ref="VuetiSelect" :items="items"></vueti-select>
       </div>
       <div class="col-md-3">
-        <label for="vueti">Option</label>
-
-        <vueti-select ref="VuetiSelect"
-        :value="items"
-        :no-option-title="'No Option Selected'"
-        :select-all-title="'Select All'"
-        :label-limit="3">
-        </vueti-select>
-
-        <vueti-select-test ref="VuetiSelectTeste"
-        :value="itemsTest"
-        :no-option-title="'No Option Selected'"
-        :select-all-title="'Select All'"
-        :label-limit="3">
+        <label for="vueti-test">Option 2</label>
+        <vueti-select-test ref="VuetiSelectTeste" :items="itemsTest" label-limit="11">
         </vueti-select-test>
-
       </div>
-      <div class="col-md-3">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="test z-index vueti select">
     </div>
   </div>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
   <script src="vue.js/vue.min.js"></script>
   <script src="VuetiSelect.js"></script>
   <script>
@@ -63,112 +42,82 @@
           {
             id: 1,
             name: "Clothing",
-            displayName: "<div style='color:red;'>Clothing</div>",
-            subItems: [],
-            itemSelected: false,
-            expanded: false,
-            cssCheckbox: "svgArrow",
+            displayName: "<div style='color:blue;'>Clothing</div>",
           },
           {
             id: 2,
             name: "tést",
             displayName: "tést",
-            subItems: [],
-            itemSelected: false,
-            expanded: false,
-            cssCheckbox: "svgArrow",
           },
           {
             id: 3,
             name: "Food",
             displayName: "Food html",
+            expanded: false,
             subItems: [
               {
                 id: 11,
                 name: "Fruits",
                 displayName: "<div style='color:green;'>Fruits</div",
-                subItemSelected: false,
               },
               {
                 id: 12,
                 name: "Vegetables",
                 displayName: "<div style='color:red;'>Vegetables</div",
-                subItemSelected: false,
               },
               {
                 id: 13,
                 name: "Meat",
                 displayName: "<div style='color:red;'>Meat</div",
-                subItemSelected: false,
               },
-            ],
-            itemSelected: false,
-            expanded: false,
+            ]
           },
           {
             id: 4,
             name: "Electronics",
             displayName: "Electronics",
-            subItems: [],
-            itemSelected: false,
-            expanded: false,
-            cssCheckbox: "svgArrow",
           },
         ],
         items: [
           {
             id: 1,
             name: "Clothing",
-            displayName: "<div style='color:red;'>Clothing</div>",
-            subItems: [],
-            itemSelected: false,
-            expanded: false,
-            cssCheckbox: "svgArrow",
+            displayName: "<div style='color:gray;'>Clothing with html</div>",
           },
           {
             id: 2,
-            name: "tésté",
-            displayName: "tésté",
-            subItems: [],
-            itemSelected: false,
-            expanded: false,
-            cssCheckbox: "svgArrow",
+            name: "tést",
+            displayName: "tést",
           },
           {
             id: 3,
             name: "Food",
             displayName: "Food html",
+            expanded: false,
             subItems: [
               {
                 id: 11,
                 name: "Fruits",
-                displayName: "<div style='color:green;'>Fruits</div",
+                displayName: "<div style='color:green;'>Fruits</div>",
                 subItemSelected: false,
               },
               {
                 id: 12,
                 name: "Vegetables",
-                displayName: "<div style='color:red;'>Vegetables</div",
+                displayName: "<div style='color:red;'>Vegetables</div>",
                 subItemSelected: false,
               },
               {
                 id: 13,
                 name: "Meat",
-                displayName: "<div style='color:red;'>Meat</div",
-                subItemSelected: false,
+                displayName: "<div style='color:blue;'>Meat</div>",
               },
-            ],
-            itemSelected: false,
-            expanded: true,
+            ]
           },
           {
             id: 4,
             name: "Electronics",
             displayName: "Electronics",
-            subItems: [],
-            itemSelected: false,
-            expanded: false,
-            cssCheckbox: "svgArrow",
           },
         ],
       },

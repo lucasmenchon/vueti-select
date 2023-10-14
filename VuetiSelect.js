@@ -1,75 +1,99 @@
 var VuetiSelect = Vue.component("VuetiSelect", {
   template: `
-  <div id="VuetiSelect" class="vuetiSelectBox">
-    <div class="dropdownContainer">
-      <div class="buttonBox">
-        <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
-          <span>{{ selectedOptionsText }}</span>
-          <i :class="cssBtnBox.icon"></i>
-        </button>
-      </div>
-      <transition name="fade">
-        <div v-if="showDropdownMenu" :class="cssDropdownMenu">
-          <div class="searchBox">
-            <div class="svgSearchBox">
-              <i class="svgSearch"></i>
-            </div>
-            <input type="text" v-model="searchTerm" placeholder="Search" class="searchBar" />
-            <button class="btnClear" type="button" @click="clearSearch">
-              <i class="svgEraser"></i>
-            </button>
-          </div>
-          <div :class="cssItemsBox">
-            <div class="boxSelectAll">
-              <label class="labelSelectAll">
-                <input type="checkbox" id="noMargin" class="inputSelectAll" @change="toggleSelectAll"
-                  v-model="selectedAll" />
-                {{ selectAllTitle }}
-              </label>
-            </div>
-            <ul class="itemsMenu">
-              <li v-for="item in filteredItems" :key="item.id" class="itemGroup">
-                <div class="itemBox">
-                  <label class="itemLabel">
-                    <input type="checkbox" id="noMargin" class="groupCheckbox" v-model="item.itemSelected"
-                      @change="toggleItemSelect(item)" :value="item.id" />
-                    <span class="displayNames" v-html="item.displayName"></span>
-                    <button type="button" @click="toggleGroup(item)" class="checkboxButton"
-                      v-if="item.subItems && item.subItems.length > 0">
-                      <i :class="item.expanded ? 'svgArrow open' : 'svgArrow'"></i>
-                    </button>
-                  </label>
-                </div>
-                <transition name="fade">
-                  <ul v-if="item.expanded" class="subItemsMenu">
-                    <li v-for="subItem in item.subItems" :key="subItem.id">
-                      <div class="subItemBox">
-                        <label class="subItemLabel">
-                          <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :value="subItem.id"
-                            @change="toggleSingleSubItem(item)" />
-                          <span class="displayNames" v-html="subItem.displayName"></span>
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </transition>
-              </li>
-            </ul>
-          </div>
+    <div id="VuetiSelect" class="vuetiSelectBox">
+      <div class="dropdownContainer">
+        <div class="buttonBox">
+          <button type="button" :class="cssBtnBox.customBtn" @click="toggleDropdown()">
+            <span>{{ items.length > 0 ? selectedOptionsText : notFoundText }}</span>
+            <i :class="items.length > 0 ? cssBtnBox.icon : ''"></i>
+          </button>
         </div>
-      </transition>
+        <transition name="fade">
+          <div v-if="showDropdownMenu && items.length > 0" :class="cssDropdownMenu">
+            <div class="searchBox">
+              <div class="svgSearchBox">
+                <i class="svgSearch"></i>
+              </div>
+              <input type="text" v-model="searchTerm" :placeholder="searchText" class="searchBar" />
+              <button class="btnClear" type="button" @click="clearSearch">
+                <i class="svgEraser"></i>
+              </button>
+            </div>
+            <div :class="cssItemsBox">
+              <div class="boxSelectAll">
+                <label class="labelSelectAll">
+                  <input type="checkbox" id="noMargin" class="inputSelectAll" @change="toggleSelectAll"
+                    v-model="selectedAll" />
+                  <span class="selectAllText">{{ selectAllText }}</span>
+                </label>
+                <label class="valueCountText">{{ totalItemsText }} {{ totalItemsCount() }}</label>
+              </div>
+              <ul class="itemsMenu">
+                <li v-for="item in filteredItems" :key="item.id" class="itemGroup">
+                  <div class="itemBox">
+                    <label class="itemLabel">
+                      <input type="checkbox" id="noMargin" class="groupCheckbox" v-model="item.itemSelected"
+                        @change="toggleItemSelect(item)" :items="item.id" />
+                      <span class="displayNames" v-html="item.displayName"></span>
+                      <button type="button" @click="toggleGroup(item)" class="toggleGroup"
+                        v-if="item.subItems && item.subItems.length > 0">
+                        <i :class="item.expanded ? 'svgArrow open': 'svgArrow'"></i>
+                      </button>
+                    </label>
+                  </div>
+                  <transition name="fade">
+                    <ul v-if="item.expanded" class="subItemsMenu">
+                      <li v-for="subItem in item.subItems" :key="subItem.id">
+                        <div class="subItemBox">
+                          <label class="subItemLabel">
+                            <input type="checkbox" id="noMargin" v-model="subItem.subItemSelected" :items="subItem.id"
+                              @change="toggleSingleSubItem(item)" />
+                            <span class="displayNames" v-html="subItem.displayName"></span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
+                  </transition>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </transition>
+      </div>
     </div>
-  </div>
   `,
   props: {
-    value: Array,
-    noOptionTitle: String,
-    selectAllTitle: String,
-    labelLimit: Number,
+    items: {
+      type: Array,
+      default: [],
+    },
+    totalItemsText: {
+      type: String,
+      default: "Total:",
+    },
+    notFoundText: {
+      type: String,
+      default: "No data found.",
+    },
+    noSelectedText: {
+      type: String,
+      default: "All items",
+    },
+    selectAllText: {
+      type: String,
+      default: "Select all",
+    },
+    searchText: {
+      type: String,
+      default: "Search...",
+    },
+    labelLimit: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
-      items: this.value,
       selectedOptions: [],
       searchTerm: "",
       showDropdownMenu: false,
@@ -86,20 +110,26 @@ var VuetiSelect = Vue.component("VuetiSelect", {
   computed: {
     filteredItems() {
       if (this.searchTerm === "") {
-        return this.value;
+        return this.items;
       }
       const normalizedSearchTerm = this.normalizeText(this.searchTerm);
       const matchingItems = this.items.filter((item) => {
         const normalizedItemName = this.normalizeText(item.name);
-        const itemNameMatches = normalizedItemName.includes(normalizedSearchTerm);
-        const matchingSubItems = item.subItems.filter((subItem) => {
-          const normalizedSubItemName = this.normalizeText(subItem.name);
-          return normalizedSubItemName.startsWith(normalizedSearchTerm);
-        });
-        if (itemNameMatches || matchingSubItems.length > 0) {
-          item.expanded = true;
+        const itemNameMatches =
+          normalizedItemName.includes(normalizedSearchTerm);
+
+        if (item.subItems && item.subItems.length > 0) {
+          const matchingSubItems = item.subItems.filter((subItem) => {
+            const normalizedSubItemName = this.normalizeText(subItem.name);
+            return normalizedSubItemName.startsWith(normalizedSearchTerm);
+          });
+          if (itemNameMatches || matchingSubItems.length > 0) {
+            item.expanded = true;
+          }
+          return itemNameMatches || matchingSubItems.length > 0;
+        } else {
+          return itemNameMatches;
         }
-        return itemNameMatches || matchingSubItems.length > 0;
       });
 
       return matchingItems;
@@ -118,7 +148,7 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     },
     selectedOptionsText() {
       if (this.selectedOptions.length === 0) {
-        return this.noOptionTitle;
+        return this.noSelectedText;
       } else if (this.selectedOptions.length <= this.labelLimit) {
         return this.selectedOptions.map((item) => item.name).join(", ");
       } else {
@@ -149,9 +179,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
     },
   },
   methods: {
-    getSelectedOptions(options) {
+    getSelectedOptionsIds() {
       const selectedOptions = [];
-      options.forEach((item) => {
+      this.items.forEach((item) => {
         if (item.subItems && item.subItems.length > 0) {
           const selectedSubItemsInGroup = item.subItems.filter(
             (subItem) => subItem.subItemSelected
@@ -220,6 +250,9 @@ var VuetiSelect = Vue.component("VuetiSelect", {
       this.updateSelectedOptions();
     },
     toggleGroup(item) {
+      if (typeof item.expanded === 'undefined') {
+        item.expanded = false;
+      }
       item.expanded = !item.expanded;
       if (item.expanded) {
         item.cssCheckbox = "svgArrow open";
@@ -243,6 +276,20 @@ var VuetiSelect = Vue.component("VuetiSelect", {
           return item.subItems.filter((subItem) => subItem.subItemSelected);
         }
       });
+    },
+    getTotalItems(item) {
+      if (item.subItems && item.subItems.length > 0) {        
+        return item.subItems.length;
+      } else {       
+        return 1;
+      }
+    },
+    totalItemsCount() {
+      let totalCount = 0;
+      for (const item of this.filteredItems) {
+        totalCount += this.getTotalItems(item);
+      }
+      return totalCount;
     },
     clearSearch() {
       this.searchTerm = "";
