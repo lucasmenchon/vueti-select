@@ -101,14 +101,12 @@ subItems are the "children" of an item.</p>
               {
                 id: 11,
                 name: "Fruits",
-                displayName: "&lt;div style='color:green;'>Fruits&lt;/div>",
-                subItemSelected: false,
+                displayName: "&lt;div style='color:green;'>Fruits&lt;/div>",                
               },
               {
                 id: 12,
                 name: "Vegetables",
-                displayName: "&lt;div style='color:red;'>Vegetables&lt;/div>",
-                subItemSelected: false,
+                displayName: "&lt;div style='color:red;'>Vegetables&lt;/div>",                
               },
               {
                 id: 13,
