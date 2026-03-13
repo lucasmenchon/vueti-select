@@ -1,0 +1,5 @@
+node_modules/
+dist/
+v1-legacy/
+v2-modern/
+package-lock.json

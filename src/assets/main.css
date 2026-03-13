@@ -1,0 +1,196 @@
+/* ===== Global Reset & Variables ===== */
+:root {
+  --vs-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vs-primary: #6366f1;
+  --vs-primary-light: #818cf8;
+  --vs-primary-ultra-light: #eef2ff;
+  --vs-danger: #ef4444;
+  --vs-danger-light: #fecaca;
+  --vs-success: #10b981;
+  --vs-warning: #f59e0b;
+  --vs-bg: #ffffff;
+  --vs-bg-secondary: #f8fafc;
+  --vs-bg-hover: #f1f5f9;
+  --vs-border: #e2e8f0;
+  --vs-border-focus: #6366f1;
+  --vs-text: #1e293b;
+  --vs-text-secondary: #64748b;
+  --vs-text-muted: #94a3b8;
+  --vs-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --vs-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --vs-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --vs-radius-sm: 6px;
+  --vs-radius-md: 10px;
+  --vs-radius-lg: 14px;
+  --vs-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --vs-primary: #818cf8;
+  --vs-primary-light: #a5b4fc;
+  --vs-primary-ultra-light: #1e1b4b;
+  --vs-danger: #f87171;
+  --vs-danger-light: #450a0a;
+  --vs-success: #34d399;
+  --vs-warning: #fbbf24;
+  --vs-bg: #0f172a;
+  --vs-bg-secondary: #1e293b;
+  --vs-bg-hover: #334155;
+  --vs-border: #334155;
+  --vs-border-focus: #818cf8;
+  --vs-text: #f1f5f9;
+  --vs-text-secondary: #94a3b8;
+  --vs-text-muted: #64748b;
+  --vs-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --vs-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --vs-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--vs-font-family);
+  background: var(--vs-bg-secondary);
+  color: var(--vs-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Demo Page Styles ===== */
+.demo-app {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.demo-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--vs-primary), #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.demo-header p {
+  color: var(--vs-text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.demo-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.demo-section {
+  background: var(--vs-bg);
+  border-radius: var(--vs-radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--vs-shadow-md);
+  border: 1px solid var(--vs-border);
+}
+
+.demo-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--vs-text);
+}
+
+.demo-section p {
+  color: var(--vs-text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.demo-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.demo-col {
+  flex: 1;
+  min-width: 280px;
+}
+
+.demo-col label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--vs-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--vs-border);
+  background: var(--vs-bg);
+  color: var(--vs-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: var(--vs-shadow-md);
+  transition: all var(--vs-transition);
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--vs-primary);
+}
+
+.selected-output {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--vs-bg-secondary);
+  border-radius: var(--vs-radius-sm);
+  border: 1px solid var(--vs-border);
+  font-size: 0.8rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--vs-text-secondary);
+  word-break: break-all;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-new {
+  background: #dcfce7;
+  color: #166534;
+}
+
+[data-theme="dark"] .badge-new {
+  background: #14532d;
+  color: #86efac;
+}
