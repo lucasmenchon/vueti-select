@@ -122,12 +122,11 @@
 
           <!-- Toolbar: Select All + Counter -->
           <div class="vueti-toolbar">
-            <label class="vueti-check vueti-toolbar__select-all">
+            <label class="vueti-check vueti-toolbar__select-all" @click.prevent="toggleSelectAll">
               <input
                 type="checkbox"
                 :checked="isAllSelected"
                 :indeterminate="isIndeterminate"
-                @change="toggleSelectAll"
                 class="vueti-check__input"
               />
               <span class="vueti-check__box">
@@ -161,12 +160,11 @@
                 role="option"
                 :aria-selected="item.itemSelected"
               >
-                <label class="vueti-check" @click.stop>
+                <label class="vueti-check" @click.stop.prevent="handleItemClick(item)">
                   <input
                     type="checkbox"
                     :checked="item.itemSelected"
                     :indeterminate="isGroupIndeterminate(item)"
-                    @change="handleItemClick(item)"
                     class="vueti-check__input"
                   />
                   <span class="vueti-check__box">
@@ -208,11 +206,10 @@
                     role="option"
                     :aria-selected="subItem.subItemSelected"
                   >
-                    <label class="vueti-check" @click.stop>
+                    <label class="vueti-check" @click.stop.prevent="toggleSubItem(item, subItem)">
                       <input
                         type="checkbox"
                         :checked="subItem.subItemSelected"
-                        @change="toggleSubItem(item, subItem)"
                         class="vueti-check__input"
                       />
                       <span class="vueti-check__box">
